@@ -1,0 +1,10 @@
+<div>
+<%= link_to 'Upload Your Photo', new_photo_path %><br>
+<%= @photos.each do |f| %>
+	<%= link_to image_tag(f.image.url(:thumb)),f.image.url %><br>
+	<%= f.title %><%= link_to "delete", photo_path(f), method: :delete, data: {confirm: 'Are u sure?'} %><br>
+	<%= link_to 'Edit', edit_photo_path(f) %>
+	<%end%>
+	</div>
+
+	

@@ -1,0 +1,30 @@
+<div class="container">
+<div class="jumbotron">
+<h2><%= @album.name %></h2>
+<p>
+<%= link_to 'Add Photo', new_user_album_photo_path(@user.id,@album.id),  class: "btn btn-primary btn-lg", role: "button"%><br></p>
+</div>
+
+
+<% @images.each do|f| %>
+	
+	<div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+	<% if /missing.png/.match(f.image.url) %>
+	<%else%>
+	<br><%= link_to image_tag(f.image.url), f.image.url %><br>
+	<% @tags=f.tags %>
+	<div class="caption">
+	<%= f.title %><br>
+	Tags: 
+	<% @tags.each do |t| %>
+		<%= t.tname %> 
+		<%end%><br>
+<p>
+<%=link_to "Edit", edit_user_album_photo_path(@user.id,@album.id, f.id)%>
+<%= link_to "Delete", user_album_photo_path(@user.id,@album.id,f.id), :method => "delete" %></p></div>
+</div>
+</div>
+<%end%>
+	<%end%>
+	</div>

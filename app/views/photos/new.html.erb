@@ -1,0 +1,28 @@
+<div class="container">
+<div class="jumbotron">
+<h2><%= @album.name %></h2>
+<p>ADD PHOTO</p>
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#"><%= @album.name %></a></li>
+  <li class="active">Add Photo</li>
+</ol>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+<%= form_for :photo, :url => user_album_photos_path, :method => :post, :html => { :multipart => true } do |f| %>
+	
+	<%= f.text_field :title, placeholder: 'Title' %>
+	<p>Attach photo<br>
+	<%= f.file_field :image %><br>
+	<%# fields_for :tags do |fa|%>
+
+	<%= f.label :tags %> 
+	<%= f.text_field :tags_attributes %><%#end%><br>
+	<%= f.submit :submit %>
+	</p>
+	<%end%>
+	</div>
+
+</div>
+</div>

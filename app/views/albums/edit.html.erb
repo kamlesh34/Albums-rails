@@ -1,0 +1,4 @@
+<%=form_for :album, :url => user_album_path, :method => :put do |f| %>
+<%= f.text_field :name, placeholder: "Album Name" %>
+<%= f.submit :submit %>
+<%end%>

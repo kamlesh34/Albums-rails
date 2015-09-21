@@ -1,0 +1,9 @@
+<div>
+<%= image_tag @photo.image.url(:medium) %>
+<%#debugger%>
+<%= form_for :tags, :url => album_photo_tags_path, :method => 'post' do |f| %>
+<%= f.label 'Enter tags' %>
+<%= f.text_field :tname %>
+<%= f.submit :submit %>
+<%end%>
+</div>

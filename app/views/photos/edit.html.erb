@@ -1,0 +1,11 @@
+<div>
+<% #debugger%>
+<%= form_for :photo, :url => user_album_photo_path, :method => 'put' do |f| %>
+	
+	<%= f.text_field :title, placeholder: 'New Title' %>
+	<p>Attach photo<br>
+	<%= f.file_field :image %>
+	<%= f.submit :submit %>
+	</p>
+	<%end%>
+	</div>
