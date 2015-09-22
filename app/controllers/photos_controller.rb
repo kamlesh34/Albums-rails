@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
 #before_filter :set_tags_attribute
 def new
-	@user=User.find_by(params[:user_id])
+	@user=User.find(params[:user_id])
 	@album=@user.albums.find(params[:album_id])
 	@photo=@album.photos.build
 	@tags=Tag.new
@@ -9,7 +9,7 @@ def new
 
 end
 def create
-	@user=User.find_by(params[:user_id])
+	@user=User.find(params[:user_id])
 	@album=@user.albums.find(params[:album_id])
 	@photo=@album.photos.build(photo_params)
 	@tags=@photo.tags.build(params[:tags])
