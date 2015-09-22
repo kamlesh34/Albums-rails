@@ -1,12 +1,13 @@
 <div class="container">
+<ol class="breadcrumb">
+  <li><a href="<%= user_albums_path %>">Home</a></li>
+  <li><a href="<%= user_album_path(@user.id,@album.id) %>"><%= @album.name %></a></li>
+  <li class="active">Add Photo</li>
+</ol>
 <div class="jumbotron">
 <h2><%= @album.name %></h2>
 <p>ADD PHOTO</p>
-<ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li><a href="#"><%= @album.name %></a></li>
-  <li class="active">Add Photo</li>
-</ol>
+
 </div>
 <div class="panel panel-default">
   <div class="panel-body">

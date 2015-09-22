@@ -1,4 +1,8 @@
 <div class="container">
+<ol class="breadcrumb">
+  <li><a href="<%= user_albums_path %>">Home</a></li>
+  <li class="active"><%= @album.name %></li>
+</ol>
 <div class="jumbotron">
 <h2><%= @album.name %></h2>
 <p>
