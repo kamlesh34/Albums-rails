@@ -20,7 +20,7 @@ def create
 	end
 end
 def show
-	@user=User.find_by(params[:user_id])
+	@user=User.find(params[:user_id])
 	@album=@user.albums.find(params[:id])
 	@images=@album.photos
 
