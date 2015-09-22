@@ -21,8 +21,7 @@
 	<p><b>Attach photo</b> 
 	<%= f.file_field :image %><br>
 	<%# fields_for :tags do |fa|%>
-
-	<%= f.label :tags %> 
+		<%= f.label :tags %> 
 	<%= f.text_field :tags_attributes %><%#end%>
 	<%= f.submit :submit, class: "btn btn-warning btn-sm", role: "button"%>
 	</p>

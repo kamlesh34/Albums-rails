@@ -12,7 +12,7 @@ def create
 	@user=User.find(params[:user_id])
 	@album=@user.albums.find(params[:album_id])
 	@photo=@album.photos.build(photo_params)
-	@tags=@photo.tags.build(params[:tags])
+	#@tags=@photo.tags.build(params[:tags])
 	#debugger
 #@tags=@photo.tags.build(params[:tags_attributes])
 	
@@ -26,7 +26,7 @@ def create
 #end
 		if @photo.save
 			#debugger
-			#@tags.photos << @photo
+			
 			flash[:sucess]="The photo and tags was added!"
 		redirect_to user_album_path(@user.id,@album.id)
 	else

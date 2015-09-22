@@ -1,0 +1,33 @@
+<div class="container">
+<ol class="breadcrumb">
+  <li><a href="<%= tags_path %>">Tags</a></li>
+  <li class="active"><%= @tag.tname %></li>
+</ol>
+<div class="jumbotron">
+<h2><%= @tag.tname %></h2>
+</div>
+
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Photos</div>
+  <div class="panel-body">
+
+<% @images.each do|f| %>
+	
+	<div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+	<% if /missing.png/.match(f.image.url) %>
+	<%else%>
+	<br><%= link_to image_tag(f.image.url), f.image.url %><br>
+	
+	
+<p class="caption">
+<%= link_to f.title, user_album_path(@user.id,f.album.id), class: "btn btn-primary", role: "button" %></p></div>
+</div>
+</div>
+<%end%>
+	<%end%>
+	</div>
+	</div>
+	</div>

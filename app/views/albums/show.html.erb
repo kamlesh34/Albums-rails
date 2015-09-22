@@ -24,7 +24,7 @@
 	<br><%= link_to image_tag(f.image.url), f.image.url %><br>
 	<% @tags=f.tags %>
 	<div class="caption">
-	<%= f.title %><br>
+	<h4><b><%= f.title %></b></h4><br>
 	Tags: 
 	<% @tags.each do |t| %>
 		<%= t.tname %> 

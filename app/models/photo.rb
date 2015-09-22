@@ -13,11 +13,12 @@ content_type: {content_type: ["image/jpeg","image/gif","image/png"]}
 #before_save :tag_split
 private
 def split_tags
+	@user_id=self.album.user_id
 	#debugger
 	if @tags_attributes
 	self.tags=@tags_attributes.split(",").map do |name|
-			Tag.where(tname: name).first_or_create(:tname => name)
-	end
+				Tag.where(tname: name).first_or_create(:tname => name, :user_id => @user_id)
+		end
 end
 end
 end

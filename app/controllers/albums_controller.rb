@@ -2,7 +2,7 @@ class AlbumsController < ApplicationController
 def index
 	@user=User.find(current_user.id)
 	@albums=@user.albums.all
-	# byebug
+	#byebug
 	# @cover=Photo.where(params[:album_id] => f.id).first
 
 end
