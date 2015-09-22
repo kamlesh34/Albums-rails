@@ -1,6 +1,5 @@
 class TagsController < ApplicationController
-def index
-end
+
 def new
 	@album=Album.find(params[:album_id])
 	@photo=@album.photos.find(params[:photo_id])

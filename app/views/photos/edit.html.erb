@@ -1,11 +1,23 @@
 <div>
 <% #debugger%>
+
+<div class="jumbotron">
+<h2><%= @album.name %></h2>
+
+
+</div>
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Edit Photo: <%= @photo.title %></div>
+  <div class="panel-body">
 <%= form_for :photo, :url => user_album_photo_path, :method => 'put' do |f| %>
 	
-	<%= f.text_field :title, placeholder: 'New Title' %>
-	<p>Attach photo<br>
-	<%= f.file_field :image %>
-	<%= f.submit :submit %>
+	<%= f.text_field :title, placeholder: 'New Title' %><br><br>
+	<p><b>Attach photo </b>
+	<%= f.file_field :image %><br>
+	<%= f.submit :submit, class: "btn btn-success btn-sm"%>
 	</p>
 	<%end%>
+	</div>
+	</div>
 	</div>

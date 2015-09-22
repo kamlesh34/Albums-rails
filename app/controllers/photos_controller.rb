@@ -34,6 +34,7 @@ def create
 	end
 end
 def edit
+	@album=Album.find(params[:album_id])
 	@photo=Photo.find(params[:id])
 end
 def update
