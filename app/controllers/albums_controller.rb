@@ -39,7 +39,7 @@ def update
 	end
 end
 def destroy
-	@user=User.find_by(params[:user_id])
+	@user=User.find(params[:user_id])
 	@album=@user.albums.find(params[:id])
 	if @album.destroy
 		redirect_to '/'
