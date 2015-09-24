@@ -9,9 +9,9 @@
 <p>ADD PHOTO</p>
 
 </div>
-<div class="panel panel-primary">
+<div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Add New Photo</div>
+  <div class="panel-heading"><b>Add New Photo</b></div>
   <div class="panel-body">
 
 <%= form_for :photo, :url => user_album_photos_path, :method => :post, :html => { :multipart => true } do |f| %>

@@ -14,13 +14,10 @@
 
 <% else %>
 <%#debugger%>
-<td><img src="http://i.imgur.com/vGsqNpo.jpg"), class="thumbnail"></img> </td>
+<img src="http://i.imgur.com/vGsqNpo.jpg"), class="thumbnail"></img>
 <% end %>
-
-
-
  <div class="caption">
-<h3 ><a href="<%= tag_path(f.id) %>" class="btn btn-success btn-lg"><%= f.tname %>    <span class="badge"><%= f.photos.count %></span></a><br></h3>
+<h3 ><a href="<%= tag_path(f.id) %>" class="btn btn-warning btn-lg pull-right"><%= f.tname %>    <span class="badge"><%= f.photos.count %></span></a><br></h3>
 </div>
 </div>
 </div>
