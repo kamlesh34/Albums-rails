@@ -12,22 +12,26 @@
   <!-- Default panel contents -->
   <div class="panel-heading">Photos</div>
   <div class="panel-body">
-
+<div class="row">
 <% @images.each do|f| %>
 	
 	<div class="col-sm-6 col-md-4">
     <div class="thumbnail">
 	<% if /missing.png/.match(f.image.url) %>
 	<%else%>
-	<br><%= link_to image_tag(f.image.url), f.image.url %><br>
+	<br><%= link_to image_tag(f.image.url(:medium)), f.image.url %><br>
 	
 	
 <p class="caption">
-<%= link_to f.title, user_album_path(@user.id,f.album.id), class: "btn btn-primary", role: "button" %></p></div>
+<b><%= f.title %></b>
+<%= link_to "Go To Album", user_album_path(@user.id,f.album.id), class: "btn btn-primary pull-right", role: "button" %>
+</p>
 </div>
 </div>
 <%end%>
-	<%end%>
+<%end%>
+</div>
 	</div>
 	</div>
 	</div>
+

@@ -2,8 +2,8 @@
 <div class="jumbotron" id="home">
 <h1>Welcome <%=current_user.username %></h1>
   
-  <p> <span> Create a new Album:  </span>
-<%= link_to "New Album", new_user_album_path(@user), class: "btn btn-primary btn-lg", role: "button"%>
+  <p class="pull-right"> <b>Create a</b><br>
+<%= link_to "New Album", new_user_album_path(@user), class: "btn btn-primary btn-lg pull-right", role: "button"%>
   </p>
 </div>
    
