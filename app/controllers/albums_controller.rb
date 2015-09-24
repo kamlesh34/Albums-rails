@@ -32,7 +32,7 @@ end
 def update
 	@user=User.find(:user_id)
 	@album=@user.albums.find(params[:id])
-	if @album.update_attributes(album_params)
+	if @album.update(album_params)
 		redirect_to '/'
 	else
 		render 'edit'
