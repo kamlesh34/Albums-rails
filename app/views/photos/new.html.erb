@@ -5,7 +5,7 @@
   <li class="active">Add Photo</li>
 </ol>
 <div class="jumbotron">
-<h2><%= @album.name %></h2>
+<h1><%= @album.name %></h1>
 <p>ADD PHOTO</p>
 
 </div>
@@ -15,16 +15,15 @@
   <div class="panel-body">
 
 <%= form_for :photo, :url => user_album_photos_path, :method => :post, :html => { :multipart => true } do |f| %>
-	
-	<%= f.text_field :title, placeholder: 'Title' %>
-	<br><br>
-	<p><b>Attach photo</b> 
-	<%= f.file_field :image %><br>
+<div class="input-group">	
+	<%= f.text_field :title, placeholder: 'Title', class: "form-control" %></div><br>
+	<p class="input-group"><b>Attach photo</b> 
+	<%= f.file_field :image, class: "btn btn-default btn-sm" %><br>
 	<%# fields_for :tags do |fa|%>
 		<%= f.label :tags %> 
-	<%= f.text_field :tags_attributes %><%#end%>
-	<%= f.submit :submit, class: "btn btn-warning btn-sm", role: "button"%>
-	</p>
+	<%= f.text_field :tags_attributes, class: "form-control" %><%#end%></p><br>
+	<%= f.submit :submit, class: "btn btn-warning btn-lg", role: "button"%>
+
 	<%end%>
 	</div>
 

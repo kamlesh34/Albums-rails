@@ -3,7 +3,8 @@
 <h3>NEW ALBUM</h3>
 <p>
 <%=form_for :album, :url => user_albums_path, :method => :post do |f| %>
-<%= f.text_field :name, placeholder: "Enter Album Name"  %>
+<div class= "input-group">
+<%= f.text_field :name, placeholder: "Enter Album Name", class: "form-control"%></div><br>
 <%= f.submit :submit , class: "btn btn-info btn-lg", role: "button"%>
 <%end%>
 </p>

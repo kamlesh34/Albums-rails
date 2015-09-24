@@ -4,7 +4,7 @@
   <li class="active"><%= @album.name %></li>
 </ol>
 <div class="jumbotron">
-<h2><%= @album.name %></h2>
+<h1><%= @album.name %></h1>
 <p>
 <%= link_to 'Add Photo', new_user_album_photo_path(@user.id,@album.id),  class: "btn btn-primary btn-lg", role: "button"%><br></p>
 </div>
@@ -12,30 +12,36 @@
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Photos</div>
+ 
   <div class="panel-body">
-
+<div class="row">
 <% @images.each do|f| %>
 	
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-3">
     <div class="thumbnail">
 	<% if /missing.png/.match(f.image.url) %>
 	<%else%>
-	<br><%= link_to image_tag(f.image.url), f.image.url %><br>
+	<br><%= link_to image_tag(f.image.url(:medium)), f.image.url %><br>
 	<% @tags=f.tags %>
 	<div class="caption">
-	<h4><b><%= f.title %></b></h4><br>
+	<h3><b><%= f.title %></b></h3><br>
 	Tags: 
 	<% @tags.each do |t| %>
-		<%= t.tname %> 
-		<%end%><br>
-<p>
-<%=link_to "Edit", edit_user_album_photo_path(@user.id,@album.id, f.id)%>
-<%= link_to "Delete", user_album_photo_path(@user.id,@album.id,f.id), :method => "delete" %></p></div>
+		<span class="label label-info"><%= t.tname %></span> 
+		<%end%><br><br>
+
+<div class="btn-group btn-group-justified" role="group">
+<div class="btn-group" role="group">
+<%=link_to "Edit", edit_user_album_photo_path(@user.id,@album.id, f.id), class: "btn btn-default"%></div>
+<div class="btn-group" role="group">
+<%= link_to "Delete", user_album_photo_path(@user.id,@album.id,f.id), :method => "delete", class: "btn btn-default" %>
 </div>
 </div>
-<%end%>
+</div>
+</div>
+<%end%></div>
 	<%end%>
 	</div>
 	</div>
 	</div>
+</div>
