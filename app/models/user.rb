@@ -3,7 +3,7 @@ has_many :albums, :dependent => :destroy
 has_many :tags, :dependent => :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-has_attached_file :image, styles: { small: "20x20#"}
+has_attached_file :image, styles: { small: "50x50#", med: "100x100#" }
  
 validates_attachment :image, :presence => true,
   content_type: {content_type: ["image/jpeg","image/gif","image/png"]}

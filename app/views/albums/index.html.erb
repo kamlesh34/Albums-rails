@@ -1,6 +1,7 @@
 <div class="container">
 <div class="jumbotron" id="home">
-<h1>Welcome <img src="<%= current_user.image.url(:small) %>" alt="profile" class="img-circle"></img><br><%=current_user.username %></h1>
+<h1>Welcome <%= image_tag current_user.image.url, class: "img-circle" %>
+<br><%=current_user.username %></h1>
   
   <p class="pull-right"> <b>Create a</b><br>
 <%= link_to "New Album", new_user_album_path(@user), class: "btn btn-primary btn-lg pull-right", role: "button"%>

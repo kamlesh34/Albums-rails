@@ -9,6 +9,11 @@
   </div>
 
   <div class="input-group">
+    <%= f.label :profile_pic %><br />
+    <%= f.file_field :image, class: "btn btn-default" %>
+  </div>
+
+  <div class="input-group">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, class: "form-control" %>
   </div>
