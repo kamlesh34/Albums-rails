@@ -4,7 +4,7 @@ belongs_to :album
 attr_accessor :tags_attributes
 #attr_accessor :split_tags
 #accepts_nested_attributes_for :tags
-validates :attachment => true
+
 after_save :split_tags
 has_attached_file :image,
 styles: { thumb: ["120x120#", :jpg], medium: ["500x400#", :jpg]}
