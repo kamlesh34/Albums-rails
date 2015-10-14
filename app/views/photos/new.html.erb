@@ -4,28 +4,32 @@
   <li><a href="<%= user_album_path(@user.id,@album.id) %>"><%= @album.name %></a></li>
   <li class="active">Add Photo</li>
 </ol>
-<div class="jumbotron">
+<div class="jumbotron" id="home">
 <h1><%= @album.name %></h1>
 <p>ADD PHOTO</p>
 
 </div>
-<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading"><b>Add New Photo</b></div>
-  <div class="panel-body">
 
+  <div class="forms_right">
 <%= form_for :photo, :url => user_album_photos_path, :method => :post, :html => { :multipart => true } do |f| %>
-<div class="input-group">	
-	<%= f.text_field :title, placeholder: 'Title', class: "form-control" %></div><br>
+<div class="input-group input-width">	
+	<%= f.text_field :title, placeholder: 'Title', class: "form-control" %></div>
+	<p role="separator" class="divider"></p>
 	<p class="input-group"><b>Attach photo</b> 
-	<%= f.file_field :image, class: "btn btn-default btn-sm" %><br>
-	<%# fields_for :tags do |fa|%>
-		<%= f.label :tags %> 
-	<%= f.text_field :tags_attributes, class: "form-control" %><%#end%></p><br>
-	<%= f.submit :submit, class: "btn btn-warning btn-lg", role: "button"%>
+	<%= f.file_field :snaps, class: "btn btn-default btn-sm input-width" %><br>
+		<%= f.text_field :tags_attributes, placeholder: "Tags", class: "form-control input-width" %><%#end%></p>
+		<br>
+														<div class="btn-group btn-group-justified" role="group">
+														<div class="btn-group" role="group">
+														<%= f.submit :submit, class: "btn btn-success btn-sm"%>
+														</div>
+														<div class="btn-group">
+														<%= link_to "Cancel", :back, class: "btn btn-warning btn-sm"%>
+														</div>
 
+														</div>
 	<%end%>
 	</div>
 
-</div>
+
 </div>

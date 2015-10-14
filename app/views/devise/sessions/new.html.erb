@@ -1,6 +1,6 @@
 <div class="container">
-<h2>Log in</h2>
-
+<h2 id="txt">Log in</h2>
+<div class="well">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <br>
   <div class="input-group">
@@ -26,4 +26,5 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
 </div>

@@ -3,45 +3,46 @@
   <li><a href="<%= user_albums_path %>">Home</a></li>
   <li class="active"><%= @album.name %></li>
 </ol>
-<div class="jumbotron">
+<div class="jumbotron" id="home">
 <h1><%= @album.name %></h1>
 <p>
 <%= link_to 'Add Photo', new_user_album_photo_path(@user.id,@album.id),  class: "btn btn-primary btn-lg", role: "button"%><br></p>
 </div>
 
 
-<div class="panel panel-default">
-  <!-- Default panel contents -->
- 
-  <div class="panel-body">
-<div class="row">
+
+<div class="row line">
 <% @images.each do|f| %>
-	
 	<div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-	<% if /missing.png/.match(f.image.url) %>
+    <div class="thumbnail tilt" id="photo_back">
+	<% if /missing.png/.match(f.snaps_url) %>
 	<%else%>
-	<br><%= link_to image_tag(f.image.url(:medium)), f.image.url %><br>
+	<%= link_to image_tag(f.snaps_url(:medium)), f.snaps_url %>
 	<% @tags=f.tags %>
 	<div class="caption">
-	<h3><b><%= f.title %></b></h3><br>
-	Tags: 
+	
+	<h2><b id="txt"><%= f.title %></b></h2>
+	<span  id="txt">Tags: </span>
 	<% @tags.each do |t| %>
-		<span class="label label-info"><%= t.tname %></span> 
+		<span><%= link_to t.tname, tags_path, class: "btn btn-info btn-xs" %></span> 
 		<%end%><br><br>
 
 <div class="btn-group btn-group-justified" role="group">
 <div class="btn-group" role="group">
-<%=link_to "Edit", edit_user_album_photo_path(@user.id,@album.id, f.id), class: "btn btn-default"%></div>
+<%=link_to edit_user_album_photo_path(@user.id,@album.id, f.id), class: "btn btn-success" do %>
+                                                                    <i class="glyphicon glyphicon-pencil"></i> Edit
+                                                                    <%end%>
+                                                                    </div>
 <div class="btn-group" role="group">
-<%= link_to "Delete", user_album_photo_path(@user.id,@album.id,f.id), :method => "delete", class: "btn btn-default" %>
-</div>
+<%= link_to user_album_photo_path(@user.id,@album.id,f.id), :method => "delete", class: "btn btn-danger" do %>
+                                                                    <i class="glyphicon glyphicon-trash"></i> Delete
+                                                                    <%end%>
+																	</div>
 </div>
 </div>
 </div>
 <%end%></div>
 	<%end%>
 	</div>
-	</div>
-	</div>
+	
 </div>

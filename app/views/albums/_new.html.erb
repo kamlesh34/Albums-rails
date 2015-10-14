@@ -1,20 +1,27 @@
-<div class="container" >
+<div class="modal-dialog">
 <div class="jumbotron" id="home">
 <h3>NEW ALBUM</h3>
+  <div class="modal-content">
+
 <p>
 <%=form_for :album, :url => user_albums_path, :method => :post do |f| %>
+<div class="modal-body">
 <div class= "input-group">
 <%= f.text_field :name, placeholder: "Enter Album Name", class: "form-control"%></div><br>
-														<div class="btn-group btn-group" role="group">
+<div class="modal-footer">
+														<div class="btn-group btn-group-justified" role="group">
 														<div class="btn-group" role="group">
-														<%= f.submit :submit, class: "btn btn-success btn-lg"%>
+														<%= f.submit :submit, class: "btn btn-success btn-md"%>
 														</div>
 														<div class="btn-group">
-														<%= link_to "Cancel", :back, class: "btn btn-warning btn-lg"%>
+														<%= link_to "Cancel", :back, class: "btn btn-warning btn-md"%>
 														</div>
 
 														</div>
-
+</div>
+</div>
 <%end%>
 </p>
+</div>
+</div>
 </div>

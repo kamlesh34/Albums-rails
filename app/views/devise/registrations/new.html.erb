@@ -1,8 +1,13 @@
 <div class="container">
-<h2>Sign up</h2>
+<h2 id="txt">Sign up</h2>
+<div class="well">
 <p>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %><br>
+  <% if resource.errors.present? %>
+  <div class="alert alert-danger">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= devise_error_messages! %></div>
+  <%end%>
 <div class="input-group">
     <%= f.label :username %><br />
     <%= f.text_field :username, autofocus: true, class: "form-control" %>
@@ -10,7 +15,7 @@
 
   <div class="input-group">
     <%= f.label :profile_pic %><br />
-    <%= f.file_field :image, class: "btn btn-default" %>
+    <%= f.file_field :avatar, class: "btn btn-default" %>
   </div>
 
   <div class="input-group">
@@ -37,4 +42,5 @@
 <% end %>
 </p>
 <%= render "devise/shared/links" %>
+</div>
 </div>

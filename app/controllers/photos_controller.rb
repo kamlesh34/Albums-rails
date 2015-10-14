@@ -38,23 +38,26 @@ def edit
 	@photo=Photo.find(params[:id])
 end
 def update
+	@album=Album.find(params[:album_id])
 	@photo=Photo.find(params[:id])
-	if @photo.update_attributes(photo_params)
+	
+	if @photo.update(photo_params)
 		flash[:sucess]="The photo was updated!"
-		redirect_to user_album_path
+		redirect_to user_album_path(current_user, @album)
 	else
 		render 'edit'
 	end
 end
 def destroy
+	
 	@photo=Photo.find(params[:id])
 	@photo.destroy
 	flash[:sucess]="The photo was destroyed."
-	redirect_to user_albums_path
+	redirect_to user_album_path(current_user, @album)
 end
 private
 def photo_params
-	params.require(:photo).permit(:image,:title,:tags_attributes)
+	params.require(:photo).permit(:snaps,:title,:tags_attributes)
 end
 def tag_params
 	params.require(:tags).permit(:tname)

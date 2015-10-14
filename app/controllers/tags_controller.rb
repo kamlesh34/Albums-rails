@@ -1,7 +1,12 @@
 class TagsController < ApplicationController
+respond_to :html, :js
 def index
 	@user=current_user
 	@tags=@user.tags
+	respond_to do |format|
+    format.html
+    format.js
+  end
 end
 def new
 	@album=Album.find(params[:album_id])
@@ -24,6 +29,10 @@ def show
 	
 	@tag=Tag.find(params[:id])
 	@images=@tag.photos
+	respond_to do |format|
+    format.html
+    format.js
+  end
 end
 private
 def tag_params

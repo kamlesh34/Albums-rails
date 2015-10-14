@@ -1,10 +1,132 @@
 // Place all the styles related to the Albums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#home{
-	background-image: url("http://allpicts.in/download/1396/light_blue_wallpaper_pattern_for_background.jpg/");
-	overflow: hidden;
 
+
+
+@media (min-width:768px) {
+  .container{
+    width:100%;
+  }
+  #main-content{
+    min-height: 100%;
+    height: auto;
+  }
+  #main-content > .row {
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+  }
+  #main-content > .row [class*="col-md"] {
+    float:none;
+    display:inline-block;
+    white-space:normal;
+    vertical-align:top;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//for nav tabs
+#btn-back{
+	color: white;
+	
+transition: all 0.2s ease;
+  
+}
+#btn-back:hover{
+	color: black;
+	font-weight: bold;
+	background-color: rgba(0,0,0,0.5);
+}
+.box {
+
+  border: 1px solid #ccc;
+ 
+  float: left;
+  
+  background-size: 100% 202%;
+  transition: all 0.2s ease;
+  animation: down-bump 0.7s ease;
+}
+
+
+
+
+
+.box:hover {
+  background-position: 100% 100%;
+  animation: up-bump 0.7s ease;
+}
+@keyframes up-bump {
+  0% { background-color: blue; }
+  50% { background-color: grey;}
+  100% { background-color: white; }
+}
+@keyframes down-bump {
+  0% { background-color: white;}
+  50% { background-color: grey;}
+  100% { background-color: blue;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#home{
+	background-image: url("steel.jpg");
+	overflow: hidden;
+	color: white;
+	width: 100%;
+	border:5px solid #c5c5c5;
+-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+-moz-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+box-shadow: 0 3px 8px rgb(255,255,255);
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background-size: 100% 100%;
+
+text-shadow: 2px 2px 4px #000000;
 }
 #new_alb{
 	background-color: lightgrey;
@@ -15,7 +137,7 @@
 .img-circle{
 	height: 150px;
 	width: 150px;
-	padding: 20px;
+	
 
 
 }
@@ -23,4 +145,284 @@
 	height: 20px;
 	width: 20px;
 	border-radius: 100%;
+
+}
+#photo_back{
+float: left;
+display: inline-block;
+	background-image: url("wood.jpg");
+	background-size: 100% 100%;
+		-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+-moz-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+box-shadow: 0 3px 8px rgb(255,255,255);
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+}
+
+
+#nav{
+	background-color: white;
+background: rgba(0,0,0,0.5);
+	color: white;
+	border: 0px;
+	
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+-moz-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+box-shadow: 0 3px 8px rgb(255,255,255);
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+background-size: 100% 100%;
+
+}
+
+
+#bottom-nav{
+	background-color: white;
+background: rgba(0,0,0,0.5);
+	color: white;
+	border: 0px;
+	margin-bottom: 0px;
+
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+-moz-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+box-shadow: 0 3px 8px rgb(255,255,255);
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+
+
+}
+
+body{
+padding-top: 60px;
+	background-image: url("light.jpg");
+	background-size: 100% 100%;
+	background-repeat:repeat-x;
+}
+#txt{
+	color: white;
+}
+
+
+.rotate{
+transition: 1s ease;
+}
+
+.rotate:hover{
+-webkit-transform: rotateZ(-10deg);
+-ms-transform: rotateZ(-10deg);
+transform: rotateZ(-10deg);
+transition: 1s ease;
+}
+
+
+
+.grow img{
+transition: 1s ease;
+}
+.grow img:hover{
+-webkit-transform: scale(1.2);
+-ms-transform: scale(1.2);
+transform: scale(1.2);
+transition: 1s ease;
+}
+
+.index-line{
+
+border: 1px solid #ccc;
+border-radius: 10px;
+padding-top: 20px;
+margin-bottom: 20px;
+height: 380px;
+background-color: rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px #000000;
+}
+
+
+.line{
+
+border: 1px solid #ccc;
+border-radius: 10px;
+padding-top: 40px;
+margin-bottom: 20px;
+height: 430px;
+scroll-snap-points-y: repeat(430px);
+
+  overflow: auto;
+background-color: rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.no-pic-line{
+
+border: 1px solid #ccc;
+border-radius: 10px;
+padding-top: 20px;
+margin-bottom: 20px;
+height: 100px;
+
+  overflow: auto;
+background-color: rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px #000000;
+}
+
+
+
+.input-width{
+	width: 250px;
+	}
+
+
+.tilt img{
+padding-top: 10px;
+	transform: rotate3d(1, 1, 0, 45deg);
+	transition: 1s ease;
+
+}
+.tilt img:hover{
+padding-top: 10px;
+	transform: rotate3d(0, 0, 0, 0deg);
+	transition: 1s ease;
+}
+
+
+/* this is for new photo */
+.forms_right{
+border: 1px solid #ccc;
+border-radius: 10px;
+padding: 20px;
+margin-bottom: 20px;
+height: 260px;
+width: 300px;
+color: white;
+  overflow: auto;	
+background-color: rgba(0,0,0,0.5);
+	float: right;
+
+}
+
+/* for tags */
+
+.circle{
+	-webkit-border-radius: 64px;
+    -moz-border-radius: 64px;
+    -ms-border-radius: 64px;
+    -o-border-radius: 64px;
+    border-radius: 64px;
+}
+.lists{
+	border: 1px solid #ccc;
+border-radius: 10px;
+padding-top: 20px;
+margin-bottom: 20px;
+height: 360px;
+  overflow: auto;	
+background-color: rgba(0,0,0,0.5);
+}
+.container-outer { 
+height: 310px; 
+overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 800px;
+  scroll-snap-points-x: repeat(800px);
+  croll-snap-type: mandatory;
+}
+.full-width-back{
+position: absolute;
+z-index: -3;
+	width: 840px;
+	padding-top: 10px;
+padding-left: 10px;
+	border: 1px solid #ccc;
+border-radius: 10px;
+
+margin-bottom: 10px;
+height: 360px;
+scroll-snap-points-y: repeat(430px);
+	background-image: url("wood.jpg");
+	background-size: 100% 100%;
+opacity: 1;
+  overflow: auto;
+background-color: rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px #000000;
+  box-shadow: -15px 10px 50px #999;
+}
+.full-width{
+	width: 840px;
+	padding-top: 10px;
+padding-left: 10px;
+	border: 1px solid #ccc;
+border-radius: 10px;
+
+margin-bottom: 10px;
+height: 360px;
+scroll-snap-points-y: repeat(430px);
+	
+
+  overflow: auto;
+background-color: rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px #000000;
+  box-shadow: -15px 10px 50px #999;
+}
+
+
+.tilt-tag img{
+
+
+	padding-top: 10px;
+	transform: rotate3d(1, 1, 0.5, 35deg);
+	transition: 1s ease;
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+-moz-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+box-shadow: -5px 7px 10px white;
+
+z-index: -1;	
+
+}
+.tilt-tag img:hover{
+padding-top: 10px;
+	transform: rotate3d(0, 0, 0, 0deg);
+	transition: 1s ease;
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+-moz-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+box-shadow: 3px 6px 8px rgb(255,255,255);
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;	
+}
+.topic{
+position: absolute;
+z-index: 10;
+
+text-transform: uppercase;
+color: white;
+background-color: rgba(0,0,0,0.5);
+width: 86%;
+text-align: -webkit-center;
+margin-left: 0px;
+	font-size: 26px;
+	font-weight: bold;
+	margin-bottom: 2px;
+}
+
+#to-album{
+	position: absolute;
+	z-index: 5;
+}
+#tag_photo_back{
+background-color: rgba(0,0,0,0.5);
+		-webkit-box-shadow: 0 3px 80px rgba(0, 0, 0, .25);
+-moz-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+box-shadow: 5px 5px 20px #999;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+}
+
+#tag_photo_back img{
+	/*Reflection*/
+        -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.1)));
+}
+#tag_photo_back img:hover { opacity: 1;
+          /*Reflection*/
+           -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.4)));
+	
 }

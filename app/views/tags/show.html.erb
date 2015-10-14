@@ -1,3 +1,5 @@
+
+
 <div class="container">
 <ol class="breadcrumb">
   <li><a href="<%= tags_path %>">Tags</a></li>
@@ -9,7 +11,7 @@
 
 
 <div class="panel panel-default">
-  <!-- Default panel contents -->
+  <!-- Default panel contents ---->
   <div class="panel-heading">Photos</div>
   <div class="panel-body">
 <div class="row">
@@ -17,9 +19,9 @@
 	
 	<div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-	<% if /missing.png/.match(f.image.url) %>
+	<% if /missing.png/.match(f.snaps_url) %>
 	<%else%>
-	<br><%= link_to image_tag(f.image.url(:medium)), f.image.url %><br>
+	<br><%= link_to image_tag(f.snaps_url(:medium)), f.snaps_url %><br>
 	
 	
 <p class="caption">
@@ -34,4 +36,7 @@
 	</div>
 	</div>
 	</div>
+
+
+
 
