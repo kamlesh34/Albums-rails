@@ -6,26 +6,32 @@
 <p>Edit Photo</p>
 
 </div>
+<div style="float: left; padding-left: 2em" class="tilt">
+
+<img src="<%= @photo.snaps_url(:small) %>" alt="old image">
+
+
+</div>
  <div class="forms_right">
   <!-- Default panel contents -->
   
 <%= form_for :photo, :url => user_album_photo_path, :method => 'put' do |f| %>
 	<div class="input-group input-width">	
 	<%= f.text_field :title, placeholder: 'Title', class: "form-control" %></div>
-	<p role="separator" class="divider"></p>
+<br>
 	<p class="input-group"><b>Attach photo</b> 
 	<%= f.file_field :snaps, class: "btn btn-default btn-sm input-width" %><br>
 		<%= f.text_field :tags_attributes, placeholder: "Tags", class: "form-control input-width" %><%#end%></p>
 		<br>
-														<div class="btn-group btn-group-justified" role="group">
-														<div class="btn-group" role="group">
-														<%= f.submit :submit, class: "btn btn-success btn-sm"%>
-														</div>
-														<div class="btn-group">
-														<%= link_to "Cancel", :back, class: "btn btn-warning btn-sm"%>
-														</div>
+			<div class="btn-group btn-group-justified" role="group">
+			<div class="btn-group" role="group">
+			<%= f.submit :submit, class: "btn btn-success btn-sm"%>
+			</div>
+			<div class="btn-group">
+			<%= link_to "Cancel", :back, class: "btn btn-warning btn-sm"%>
+			</div>
 
-														</div>
+			</div>
 	<%end%>
 	
 	</div>

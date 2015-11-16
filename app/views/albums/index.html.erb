@@ -1,54 +1,116 @@
+<div class="container">
+
+
+</div>
+
+<div class="container">
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <div class="jumbotron" id="home2">
+					<h1>Welcome, <span class="pull-right"> <%= link_to image_tag(current_user.avatar_url),"#", class: "img-circle" %>
+					 <%=current_user.username %></span></h1>
+					</div>
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+      <div class="item active">
+      <%=link_to image_tag("spring-time.jpg"), '#', class: "frame" %>
+        <div class="carousel-caption">
+          <h3>Ansel Adams</h3>
+          <p>"When words become unclear, I shall focus with photographs. When images become inadequate, I shall be content with silence."</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <%=link_to image_tag("clock.jpg"), '#', class: "frame" %>
+        <div class="carousel-caption">
+          <h3>Hselmak</h3>
+          <p>"Capture the moment now or else its gone forever, just leaving behind the tained memmories with the happiness."</p>
+        </div>
+      </div>
+    
+      <div class="item">
+        <%=link_to image_tag("alone.jpg"), '#', class: "frame" %>
+        <div class="carousel-caption">
+          <h3>Leonardo</h3>
+          <p>"Even the silence says the thousand words, a picture can show the thousand emotions of the moments that has been lived and still feels alive somewhere."</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <%=link_to image_tag("family.jpg"), '#', class: "frame" %>
+        <div class="carousel-caption">
+          <h3>Happiness forever.....</h3>
+          <p>"Everytime you can't be happy, but the glimse of the happiness of all the time will always be right in front of you always."</p>
+        </div>
+      </div>
+  
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container" id="main-content">
-					<div class="jumbotron" id="home">
-					<h1>Welcome <%= image_tag current_user.avatar_url, class: "img-circle" %>
-					<br><%=current_user.username %></h1>
-					  
-					  <p class="pull-right"> <b>Create a</b><br>
-					<%= link_to "New Album", new_user_album_path(@user), remote: true, class: "btn btn-primary btn-lg pull-right", role: "button"%>
+					<div class="jumbotron visible-lg-* lg-home" id="home">
+					
+					  <center>
+					  <p  id="new"> <b>Create a</b><br>
+					<%= link_to new_user_album_path(@user), remote: true, class: "btn btn-primary btn-lg", role: "button" do%>
+					<i class="glyphicon glyphicon-camera"> New Album</i><%end%>
 					<div id="album-modal" class="modal fade"></div>
 					  </p>
+
+
+					  <div class="col-sm-3" id="add"></div>	</center>
 					</div>
+
+
+				
 <% if @albums.present? %>
 
-<div class="row index-line">
+<div class="row index-line" id="all-albs">
 
-				<% @albums.each do |f| %>
-<!-- <p class="well">name count is <%=f.name.length %></p> -->
-						<div class="col-xs-6 col-md-3">
-								<div class="thumbnail" id="photo_back">
-											<% if f.photos.present? %>
-											<td id="ex5"><%= link_to image_tag(f.photos.first.snaps_url(:medium)), user_album_path(@user.id,f.id), class: "thumbnail rotate" %> </td>
-											<%else%>
-												<td><%= link_to image_tag("http://i.imgur.com/vGsqNpo.jpg"), user_album_path(@user.id,f.id), class: "thumbnail rotate default" %>
-												</td>
-											<%end%>
-											 <div class="caption">
-											<h3 ><a href="<%= user_album_path(@user.id,f.id) %>" class="btn btn-success btn-lg btn-block"><%= f.name %>    <span class="badge"><%= f.photos.count %></span></a></h3>
-
-
-														<div class="btn-group btn-group-justified" role="group">
-														<div class="btn-group" role="group">
-														<%= link_to edit_user_album_path(@user.id,f.id), remote: true, class: "btn btn-warning btn-xs" do %>
-                                                                    <i class="glyphicon glyphicon-pencil"></i> Edit
-                                                                    <%end%>
-                                                                    </div>
-																		<div class="btn-group">
-																		<%= link_to user_album_path(@user.id,f.id), :method => :delete, class: "btn btn-danger btn-xs" do %>
-                                                                    <i class="glyphicon glyphicon-trash"></i> Delete
-                                                                    <%end%>
-																		</div>
-
-														</div>
-											</div>
-								</div>
-						</div>
-				<%end%>
+				<%= render 'albums' %>
 				
 				</div>
 <%else%>
 <center>
-<div class="row no-pic-line">
-<h1> NO ALBUMS </h1>
+<div class="row no-pic-line" id="no-albs">
+<h1>NO Albums</h1>
 
 </div>
 </center>

@@ -7,38 +7,10 @@
 
 <div class="col-md-3 lists">
 <div class="list-group">
-<% @tags.each do |f| %>
-
-
-<%= link_to tag_path(f.id), remote: true, class: "list-group-item list-group-item-warning" do%> 
-<%= f.tname %><span class="badge"><%= f.photos.count %></span>
-<%end%>
-<!--
-
-
-<a href="<%= tag_path(f.id) %>" class="list-group-item list-group-item-warning"><%= f.tname %>   <span class="badge"><%= f.photos.count %></span></a>
--->
-
-
- 
-
-
-
-
-    
-      <!-- /input-group -->
-<!-------------------- for photos
-<% if f.photos.present? %>
-<%= image_tag(f.photos.first.snaps_url)%>
-
-<% else %>
-<%#debugger%>
-<img src="http://i.imgur.com/vGsqNpo.jpg">
-<% end %>
------------->
-
-
-
+<% if @tags.present? %>
+<%= render "tags" %>
+<%else%>
+<li class="list-group-item list-group-item-danger">No Tags</li>
 <%end%>
 </div>
 </div>

@@ -5,7 +5,11 @@
    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+<link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans+Condensed:300|Oxygen|Maven+Pro|Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto|Oswald|Quicksand:700|Quattrocento+Sans|Ruda|Allerta+Stencil|Monoton|Iceland|Sarpanch' rel='stylesheet' type='text/css'>
 
+
+<link href='https://fonts.googleapis.com/css?family=Indie+Flower|Shadows+Into+Light|Dancing+Script' rel='stylesheet' type='text/css'>
 
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="nav">
   <div class="navbar-inner">
@@ -27,64 +31,120 @@
 
                 <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                              <% if params[:action]=="index" %>
-                                          <% if params[:controller]=="albums"%>
-                                                      <li class="active"><%= link_to user_albums_path(current_user.id) do%>
-                                                      <span>HOME</span> <i class="glyphicon glyphicon-home"></i>
-                                                      <%end%>
-                                                      </li>
-                                                      <li id="btn-back"><%= link_to tags_path, id: "txt" do%>
-                                                      <span>TAGS</span> <i class="glyphicon glyphicon-tags"></i>
-                                                      <%end%>
-                                                      </li>
-                                          <%else%>
-                                                      <li id="btn-back"><%= link_to user_albums_path(current_user.id), id: "txt" do%>
-                                                      <span>HOME</span> <i class="glyphicon glyphicon-home"></i>
-                                                      <%end%>
-                                                      </li>
-                                                      <li class="active"><%= link_to tags_path, id: "txt" do%>
-                                                      <span>TAGS</span> <i class="glyphicon glyphicon-tags"></i>
-                                                      <%end%>
-                                                      </li>  
-                                          <%end%>
-                              <%else%>
-                                        <li id="btn-back"><%= link_to user_albums_path(current_user.id), id: "txt" do%>
-                                                      <span>HOME</span> <i class="glyphicon glyphicon-home"></i>
-                                                      <%end%>
-                                                      </li>
-                                        <li id="btn-back"><%= link_to tags_path, id: "txt" do%>
-                                                      <span>TAGS</span> <i class="glyphicon glyphicon-tags"></i>
-                                                      <%end%>
-                                                      </li>
-                              <%end%>
+<% if params[:action]=="index" %>
+            <% if params[:controller]=="albums"%>
+                        <li class="active"><%= link_to user_albums_path(current_user.id) do%>
+                        <span>HOME</span> <i class="glyphicon glyphicon-home"></i>
+                        <%end%>
+                        </li>
+                        <li id="btn-back"><%= link_to tags_path, id: "txt" do%>
+                        <span>TAGS</span> <i class="glyphicon glyphicon-tags"></i>
+                        <%end%>
+                        </li>
+                        <li id="btn-back"><%= link_to sharings_path, id: "txt" do%>
+                        <span>SHARES</span> <i class="fa fa-bullhorn fa-lg"></i>
+                        <%end%>
+                        </li>
+            <%else%>
+                <% if params[:controller]=="tags"%>
+                        <li id="btn-back"><%= link_to user_albums_path(current_user.id), id: "txt" do%>
+                        <span>HOME</span> <i class="glyphicon glyphicon-home"></i>
+                        <%end%>
+                        </li>
+                        <li class="active"><%= link_to tags_path, id: "txt" do%>
+                        <span>TAGS</span> <i class="glyphicon glyphicon-tags"></i>
+                        <%end%>
+                        </li>  
+                        <li id="btn-back"><%= link_to sharings_path, id: "txt" do%>
+                        <span>SHARES</span> <i class="fa fa-bullhorn fa-lg"></i>
+                        <%end%>
+                        </li>
+                <%else%>
+                        <li id="btn-back"><%= link_to user_albums_path(current_user.id), id: "txt" do%>
+                        <span>HOME</span> <i class="glyphicon glyphicon-home"></i>
+                        <%end%>
+                        </li>
+                        <li id="btn-back"><%= link_to tags_path, id: "txt" do%>
+                        <span>TAGS</span> <i class="glyphicon glyphicon-tags"></i>
+                        <%end%>
+                        </li>
+                        <li class="active"><%= link_to sharings_path, id: "txt" do%>
+                        <span>SHARES</span> <i class="fa fa-bullhorn fa-lg"></i>
+                        <%end%>
+                        </li>
+                <%end%>
+            <%end%>
+<%else%>
+    <li id="btn-back"><%= link_to user_albums_path(current_user.id), id: "txt" do%>
+    <span>HOME</span> <i class="glyphicon glyphicon-home"></i>
+    <%end%>
+    </li>
+    <li id="btn-back"><%= link_to tags_path, id: "txt" do%>
+    <span>TAGS</span> <i class="glyphicon glyphicon-tags"></i>
+    <%end%>
+    </li>
+    <li id="btn-back"><%= link_to sharings_path, id: "txt" do%>
+    <span>SHARES</span> <i class="fa fa-bullhorn fa-lg"></i>
+    <%end%>
+    </li>
+<%end%>
                 </ul>
                       
 
-                      <ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-right">
 
-                                  <li class="dropdown">
-                                              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= image_tag current_user.avatar_url, class: "img-small" %> <span id="txt"><%= current_user.email %></span> <span class="caret"></span></a>
-                                                                 <ul class="dropdown-menu">
-                                                                  <li>
-                                                                    
-                                                                    <%= link_to destroy_user_session_path, :method => :delete  do %>
-                                                                    <i class="glyphicon glyphicon-off"></i> Logout
-                                                                    <%end%>
-                                                                  </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= image_tag current_user.avatar_url, class: "img-small" %> <span id="txt"><%= current_user.email %></span> <span class="caret"></span></a>
+         <ul class="dropdown-menu">
+          
+          <li>
+          <%= link_to edit_user_registration_path do %>
+            <i class="fa fa-cogs fa-lg"> C</i>hange Settings
+            <%end%>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+          <%= link_to user_registration_path, data: { confirm: "Are you sure?" }, method: :delete do %>
+            <i class="fa fa-times fa-lg"> D</i>elete Account
+            <%end%>
+          </li>
+          <li>
+            
+            <%= link_to destroy_user_session_path, :method => :delete  do %>
+            <i class="fa fa-lock fa-lg"> L</i>ogout
+            <%end%>
+          </li>
 
-                                                                  <li role="separator" class="divider"></li>
-                                                                  <li><a href="#">About</a></li>
-                                                                  </ul>
-                                  </li>
-                      </ul>
+          <li role="separator" class="divider"></li>
+          <li><a href="#"><i class="fa fa-info-circle fa-lg"> A</i>
+bout</a></li>
+          </ul>
+    </li>
+</ul>
 
                 </div>
  <% else %>
-                                <div class="navbar-header">
-                                      <a class="navbar-brand navbar-text navbar-left" href="#" id="txt">
-                                      	Login/Signup      	
-                                      </a>
-                                      </div>
+          <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" 
+         data-target=".navbar-collapse">
+         <span class="sr-only">Toggle navigation</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand pull-left">KALBUM</span>
+          </div>
+              <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav pull-right">
+                <%= link_to new_user_session_path, class: "btn btn-primary navbar-btn btn-md", role: "button" do%>
+                <i class="fa fa-user fa-lg"> Login</i><%end%>
+
+                <span>  <b>OR</b>  </span>
+                <%= link_to new_user_registration_path, class: "btn btn-warning navbar-btn btn-md", role: "button" do%>
+                <i class="fa fa-user-plus fa-lg"> Signup</i><%end%>
+                
+                </ul>
+              </div>
   <%end%>
 </div>
 </div>
@@ -92,7 +152,7 @@
 
 </head>
  
-<body data-spy="scroll" data-target=".board" data-offset="50">
+<body>
 
 <%= yield %>
 

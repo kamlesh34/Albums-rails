@@ -1,2 +1,9 @@
-$("#album-modal").html("<%= escape_javascript(render 'new') %>")
-$("#album-modal").modal("show")
+// $("#album-modal").html("<%= escape_javascript(render 'new') %>")
+// $("#album-modal").modal("show")
+
+$('#add').html("<%= escape_javascript(render 'new') %>");
+// $('#new').remove().fadeOut();
+
+$('#new').addClass('hidden');
+
+

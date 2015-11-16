@@ -1,9 +1,10 @@
 <div class="container">
 <div class="full-width-back"></div>
   <div class="full-width">
+<% if @images.present? %>
 <% @images.each do|f| %>
 	
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-4 tag">
     <div class="thumbnail tilt-tag" id="tag_photo_back">
   <p class="topic"><%= f.title %></p>
 	<% if /missing.png/.match(f.snaps_url) %>
@@ -12,14 +13,22 @@
 	<center>
 <p class="caption">
 
-<%= link_to "Go To Album", user_album_path(@user.id,f.album.id), class: "btn btn-primary pull-bottom", role: "button" %>
+<%= link_to user_album_path(@user.id,f.album.id), class: "btn btn-primary pull-bottom", role: "button" do %>
+         <i class="glyphicon glyphicon-share-alt"></i> Go To Album
+                  <%end%>
 </p>
 </center>
-</div>
-</div>
-
-
 <%end%>
+</div>
+</div>
+<%end%>
+<%else%>
+<center>
+<h1>NO Photos</h1>
+<%= link_to tag_path, :method => 'delete', class: "btn btn-danger delete_tag", role: "button" do %>
+         <i class="glyphicon glyphicon-share-alt"></i> Delete
+                  <%end%>
+</center>
 <%end%>
 </div>
 	

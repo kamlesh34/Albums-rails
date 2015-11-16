@@ -27,6 +27,14 @@ version :medium do
   {:width=>200, :height=>200, :crop=>:fill, :gravity=>:face}
   ]
   end
+
+  version :thumbnail do
+    process :eager => true
+    
+    cloudinary_transformation :transformation=>[
+  {:width=>20, :height=>20, :crop=>:fill, :gravity=>:face, :radius=>20}
+  ]
+  end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   # def store_dir

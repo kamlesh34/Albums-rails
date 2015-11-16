@@ -18,7 +18,7 @@ def create
 	@photo=@album.photos.find(params[:photo_id])
 		@tags=@photo.tags.build(tag_params)
 	if @tags.save
-		flash[:sucess]="The tags were added!"
+		flash[:success]="The tags were added!"
 		redirect_to album_path(@album.id)
 	else
 		render 'new'
@@ -33,6 +33,15 @@ def show
     format.html
     format.js
   end
+end
+def destroy
+	@tag=Tag.find(params[:id])
+	@tag.destroy
+	respond_to do |format|
+      format.html { redirect_to tags_path }
+      format.json
+      format.js   { render :layout => false }
+    end
 end
 private
 def tag_params

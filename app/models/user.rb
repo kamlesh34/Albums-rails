@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 mount_uploader :avatar, AvatarUploader
 has_many :albums, :dependent => :destroy
 has_many :tags, :dependent => :destroy
+has_many :sharings, :dependent => :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 

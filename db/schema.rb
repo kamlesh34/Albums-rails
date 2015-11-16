@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001101448) do
+ActiveRecord::Schema.define(version: 20151104042902) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +21,25 @@ ActiveRecord::Schema.define(version: 20151001101448) do
   end
 
   add_index "albums", ["user_id"], name: "index_albums_on_user_id"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "sharing_id"
+    t.string   "comment"
+    t.string   "author"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["sharing_id"], name: "index_comments_on_sharing_id"
+
+  create_table "likes", force: :cascade do |t|
+    t.string   "author"
+    t.integer  "sharing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes", ["sharing_id"], name: "index_likes_on_sharing_id"
 
   create_table "photos", force: :cascade do |t|
     t.string   "title"
@@ -32,6 +51,14 @@ ActiveRecord::Schema.define(version: 20151001101448) do
 
   add_index "photos", ["album_id"], name: "index_photos_on_album_id"
 
+  create_table "photos_sharings", id: false, force: :cascade do |t|
+    t.integer "photo_id"
+    t.integer "sharing_id"
+  end
+
+  add_index "photos_sharings", ["photo_id"], name: "index_photos_sharings_on_photo_id"
+  add_index "photos_sharings", ["sharing_id"], name: "index_photos_sharings_on_sharing_id"
+
   create_table "photos_tags", id: false, force: :cascade do |t|
     t.integer "photo_id"
     t.integer "tag_id"
@@ -39,6 +66,15 @@ ActiveRecord::Schema.define(version: 20151001101448) do
 
   add_index "photos_tags", ["photo_id"], name: "index_photos_tags_on_photo_id"
   add_index "photos_tags", ["tag_id"], name: "index_photos_tags_on_tag_id"
+
+  create_table "sharings", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sharings", ["user_id"], name: "index_sharings_on_user_id"
 
   create_table "tags", force: :cascade do |t|
     t.string   "tname"

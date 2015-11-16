@@ -2,8 +2,54 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#alerts{
+	position: absolute;
+	z-index: 4;
+}
+.preview{
+	height: 200px;
+	width: 200px;
+}
+#change_settings{
+	width: auto;
+	height: auto;
+}
+.carousel {
+	height: auto;
+	width: 100%;
+	overflow: hidden;
+}
+ .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 100%;
+      height: 100%;
+      margin: auto;
+  }
 
 
+
+//defined wrt device size
+
+@media (max-width:768px) {
+  .container{
+    width:100%;
+  }
+  #main-content{
+    min-height: 100%;
+    height: auto;
+  }
+  #main-content > .row {
+    overflow-x:auto;
+    overflow-y:auto;
+
+  }
+  #main-content > .row [class*="col-md"] {
+    float:none;
+    display:inline-block;
+    white-space:normal;
+    vertical-align:top;
+  }
+}
 @media (min-width:768px) {
   .container{
     width:100%;
@@ -37,11 +83,6 @@
 
 
 
-
-
-
-
-
 //for nav tabs
 #btn-back{
 	color: white;
@@ -54,35 +95,7 @@ transition: all 0.2s ease;
 	font-weight: bold;
 	background-color: rgba(0,0,0,0.5);
 }
-.box {
 
-  border: 1px solid #ccc;
- 
-  float: left;
-  
-  background-size: 100% 202%;
-  transition: all 0.2s ease;
-  animation: down-bump 0.7s ease;
-}
-
-
-
-
-
-.box:hover {
-  background-position: 100% 100%;
-  animation: up-bump 0.7s ease;
-}
-@keyframes up-bump {
-  0% { background-color: blue; }
-  50% { background-color: grey;}
-  100% { background-color: white; }
-}
-@keyframes down-bump {
-  0% { background-color: white;}
-  50% { background-color: grey;}
-  100% { background-color: blue;}
-}
 
 
 
@@ -115,7 +128,9 @@ transition: all 0.2s ease;
 #home{
 	background-image: url("steel.jpg");
 	overflow: hidden;
+	font-family: 'Allerta Stencil', sans-serif;
 	color: white;
+	text-transform: capitalize;
 	width: 100%;
 	border:5px solid #c5c5c5;
 -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
@@ -128,16 +143,35 @@ background-size: 100% 100%;
 
 text-shadow: 2px 2px 4px #000000;
 }
+
+
+#home2{
+	background: rgba(0,0,0,0.5);
+	position: absolute;
+	z-index: 5;
+	overflow: hidden;
+	font-family: 'Shadows Into Light', cursive;
+	color: white;
+	text-transform: capitalize;
+	width: 100%;
+	
+
+background-size: 100% 100%;
+
+text-shadow: 2px 2px 4px #000001;
+}
+
+
 #new_alb{
 	background-color: lightgrey;
 	overflow: hidden;
 
 
 }
-.img-circle{
-	height: 150px;
-	width: 150px;
-	
+.img-circle img{
+	height: 2em;
+	width: 2em;
+	border-radius: 100%;
 
 
 }
@@ -147,9 +181,29 @@ text-shadow: 2px 2px 4px #000000;
 	border-radius: 100%;
 
 }
+
+
+
+//For showing photos...
+.share{
+width: 50%;
+opacity: .0;
+padding-top: 5px;
+	position: absolute;
+	z-index: 4;
+	transition-duration: 2s;
+}
+.share:hover{
+	opacity: 1;
+	transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
 #photo_back{
 float: left;
 display: inline-block;
+font-family: 'Quicksand', sans-serif;
 	background-image: url("wood.jpg");
 	background-size: 100% 100%;
 		-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
@@ -161,6 +215,7 @@ box-shadow: 0 3px 8px rgb(255,255,255);
 
 
 #nav{
+font-family: 'Ruda', sans-serif;
 	background-color: white;
 background: rgba(0,0,0,0.5);
 	color: white;
@@ -203,11 +258,31 @@ padding-top: 60px;
 }
 
 
-.rotate{
+
+//effects
+.tilt img{
+padding-top: 10px;
+	transform: rotate3d(1, 1, 0, 45deg);
+	transition: 1s ease;
+
+}
+.tilt img:hover{
+padding-top: 10px;
+	transform: rotate3d(0, 0, 0, 0deg);
+	transition: 1s ease;
+}
+
+.rotate img{
+
+margin-top: 5px;
+margin-left: 5px;
+margin-right: 5px;
+padding:5px;
+background-color:white;
 transition: 1s ease;
 }
 
-.rotate:hover{
+.rotate img:hover{
 -webkit-transform: rotateZ(-10deg);
 -ms-transform: rotateZ(-10deg);
 transform: rotateZ(-10deg);
@@ -232,7 +307,7 @@ border: 1px solid #ccc;
 border-radius: 10px;
 padding-top: 20px;
 margin-bottom: 20px;
-height: 380px;
+height: 400px;
 background-color: rgba(0,0,0,0.5);
   text-shadow: 2px 2px 4px #000000;
 }
@@ -266,32 +341,29 @@ background-color: rgba(0,0,0,0.5);
 }
 
 
-
+.signup-width{
+	width: 100%;
+}
 .input-width{
-	width: 250px;
+	width: 100%;
 	}
 
 
-.tilt img{
-padding-top: 10px;
-	transform: rotate3d(1, 1, 0, 45deg);
-	transition: 1s ease;
+.caption{
 
-}
-.tilt img:hover{
-padding-top: 10px;
-	transform: rotate3d(0, 0, 0, 0deg);
-	transition: 1s ease;
+text-transform: capitalize;
 }
 
 
 /* this is for new photo */
+
+
 .forms_right{
 border: 1px solid #ccc;
 border-radius: 10px;
 padding: 20px;
 margin-bottom: 20px;
-height: 260px;
+height: 270px;
 width: 300px;
 color: white;
   overflow: auto;	
@@ -318,15 +390,62 @@ height: 360px;
   overflow: auto;	
 background-color: rgba(0,0,0,0.5);
 }
-.container-outer { 
-height: 310px; 
-overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-  width: 800px;
-  scroll-snap-points-x: repeat(800px);
-  croll-snap-type: mandatory;
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:680px) {
+.full-width-back{
+position: absolute;
+z-index: -3;
+	width: auto;
+	padding-top: 10px;
+padding-left: 10px;
+	border: 1px solid #ccc;
+border-radius: 10px;
+
+margin-bottom: 10px;
+height: 360px;
+scroll-snap-points-y: repeat(430px);
+	background-image: url("wood.jpg");
+	background-size: 100% 100%;
+opacity: 1;
+  overflow: auto;
+background-color: rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px #000000;
+  box-shadow: -15px 10px 50px #999;
 }
+.full-width{
+	width: auto;
+	padding-top: 10px;
+padding-left: 10px;
+	border: 1px solid #ccc;
+border-radius: 10px;
+
+margin-bottom: 10px;
+height: 360px;
+scroll-snap-points-y: repeat(430px);
+	
+
+  overflow: auto;
+background-color: rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px #000000;
+  box-shadow: -15px 10px 50px #999;
+}
+}
+
+
+
+
+@media (min-width:768px) {
 .full-width-back{
 position: absolute;
 z-index: -3;
@@ -364,6 +483,7 @@ background-color: rgba(0,0,0,0.5);
   text-shadow: 2px 2px 4px #000000;
   box-shadow: -15px 10px 50px #999;
 }
+}
 
 
 .tilt-tag img{
@@ -392,7 +512,7 @@ box-shadow: 3px 6px 8px rgb(255,255,255);
 .topic{
 position: absolute;
 z-index: 10;
-
+font-family: 'Quattrocento Sans', sans-serif;
 text-transform: uppercase;
 color: white;
 background-color: rgba(0,0,0,0.5);
@@ -425,4 +545,158 @@ box-shadow: 5px 5px 20px #999;
           /*Reflection*/
            -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.4)));
 	
+}
+
+
+
+
+
+//for sharings
+.likes{
+	position: absolute;
+	z-index: 3;
+	margin-top: 19em;
+	margin-left: 27.5em;
+	width: 100%;
+	padding: 10px;
+}
+.button{
+			background-image: -webkit-linear-gradient(top, #f4f1ee, #fff);
+			background-image: linear-gradient(top, #f4f1ee, #fff);
+			border-radius: 50%;
+			box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .3), inset 0px 4px 1px 1px white, inset 0px -3px 1px 1px rgba(204,198,197,.5);
+			float:left;
+			height: 70px;
+			margin: 0 30px 30px 0;
+			position: relative;
+			width: 70px;			
+			-webkit-transition: all .1s linear;
+			transition: all .1s linear;
+		}
+.button:after{
+			color:#e9e6e4;
+			content: "";
+			display: block;
+			font-size: 30px;
+			height: 30px;
+			text-decoration: none;
+			text-shadow: 0px -1px 1px #bdb5b4, 1px 1px 1px white;
+			position: absolute;
+			width: 30px;
+		}
+
+
+		.heart:after{
+			content: "❤";
+			font-size: 40px;
+			left: 19px;
+			top: 19px;
+		}
+		.uheart:after{
+			content: "❤";
+			font-size: 40px;
+			left: 19px;
+			top: 19px;
+			color: #f94e66;
+		}
+
+
+		.heart:hover:after{
+			color:#f99e4e;
+			text-shadow:0px 0px 9px #f99e4e;
+		}
+		.uheart:hover:after{
+			color:#f94e66;
+			text-shadow:0px 0px 9px #f94e66;
+		}
+
+
+
+
+#activity-tab{
+	height: 200px;
+	overflow-y: auto;
+}
+#recent-comments{
+	height: 120px;
+	overflow-y: auto;
+}
+
+#sharing-users{
+	margin-top: 5em;
+	max-height: 46em;
+}
+#sharing-users button{
+	width: 100%;
+}
+
+
+
+@media (min-width:768px) {
+#comment-modal{
+
+	right: 70%;
+
+}
+
+#comment-modal .modal-dialog  {
+width:100%;
+margin-left: 0px;
+overflow-y: initial;
+}
+}
+
+.modal.fade:not(.in).left .modal-dialog {
+    -webkit-transform: translate3d(-25%, 0, 0);
+    transform: translate3d(-25%, 0, 0);
+}
+
+#comment-modal .modal-dialog .modal-body{
+  height: 20em;
+  overflow-y: auto;
+}
+
+
+.divider {
+  height: 2px;
+  width:100%;
+  display:block; /* for use on default inline elements like span */
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+
+#sharing_photo img{
+	width: 100%;
+	height: 350px;
+	padding: 5px;
+	background-color: white;
+
+}
+#sharing_photo{
+	border-bottom: 1px solid white;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+.user-thumb{
+	height: 40px;
+	width: 40px;
+	border-radius: 100%;
+
+}
+#sharings{
+height: 46em;
+	overflow-x: hidden;
+}
+div::-webkit-scrollbar {
+    width: .5em;
+}
+ 
+div::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+div::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }

@@ -2,6 +2,7 @@ class Photo < ActiveRecord::Base
 
 mount_uploader :snaps, SnapsUploader
 has_and_belongs_to_many :tags, :dependent => :destroy
+has_and_belongs_to_many :sharings, :dependent => :destroy
 belongs_to :album
 attr_accessor :tags_attributes
 #attr_accessor :split_tags

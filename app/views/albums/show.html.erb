@@ -1,48 +1,44 @@
 <div class="container">
+
+<div class="jumbotron" id="home">
+<h1 class="text-success"><%= @album.name %>  <span class="label label-default"><%= @images.count %></h1>
+<p>
+<%= link_to new_user_album_photo_path(@user.id,@album.id),  class: "btn btn-primary btn-lg pull-right", role: "button" do %>
+					    <i class="glyphicon glyphicon-plus"></i> Photo
+					    <%end%><br></p>
+</div>
+
+
 <ol class="breadcrumb">
   <li><a href="<%= user_albums_path %>">Home</a></li>
   <li class="active"><%= @album.name %></li>
 </ol>
-<div class="jumbotron" id="home">
-<h1><%= @album.name %></h1>
-<p>
-<%= link_to 'Add Photo', new_user_album_photo_path(@user.id,@album.id),  class: "btn btn-primary btn-lg", role: "button"%><br></p>
+
+
+<div class="row line" id="photo-listings">
+<!--Photo Listings-->
+<%= render "photos" %>
 </div>
 
 
 
-<div class="row line">
-<% @images.each do|f| %>
-	<div class="col-sm-6 col-md-3">
-    <div class="thumbnail tilt" id="photo_back">
-	<% if /missing.png/.match(f.snaps_url) %>
-	<%else%>
-	<%= link_to image_tag(f.snaps_url(:medium)), f.snaps_url %>
-	<% @tags=f.tags %>
-	<div class="caption">
+<!--Pagination Setup-->
+<% if @images.count <= 4 %>
+<div id="pages-listing" class="hidden">
+<%= render "pages" %>
+</div>
+<%else%>
+<div id="pages-listing">
+<%= render "pages" %>
+</div>
+<%end%>
+
+</div><!--Ending of the container-->
+<script>
+$(function(){
 	
-	<h2><b id="txt"><%= f.title %></b></h2>
-	<span  id="txt">Tags: </span>
-	<% @tags.each do |t| %>
-		<span><%= link_to t.tname, tags_path, class: "btn btn-info btn-xs" %></span> 
-		<%end%><br><br>
+   $('.pagination a').attr('data-remote', 'true');
+});
 
-<div class="btn-group btn-group-justified" role="group">
-<div class="btn-group" role="group">
-<%=link_to edit_user_album_photo_path(@user.id,@album.id, f.id), class: "btn btn-success" do %>
-                                                                    <i class="glyphicon glyphicon-pencil"></i> Edit
-                                                                    <%end%>
-                                                                    </div>
-<div class="btn-group" role="group">
-<%= link_to user_album_photo_path(@user.id,@album.id,f.id), :method => "delete", class: "btn btn-danger" do %>
-                                                                    <i class="glyphicon glyphicon-trash"></i> Delete
-                                                                    <%end%>
-																	</div>
-</div>
-</div>
-</div>
-<%end%></div>
-	<%end%>
-	</div>
-	
-</div>
+
+</script>

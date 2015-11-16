@@ -2,11 +2,20 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 resources :users do
 resources :albums do
-resources :photos
+resources :photos do
+  resources :sharings, only: [:new, :create, :destroy]
+end
 end
 end
 resources :tags
-
+resources :sharings do
+  resources :comments
+  resources :likes, only: [:new, :create, :destroy] do
+    member do
+        get 'id'
+    end
+  end
+end
 root to: 'albums#index'
 
 #get '/photos/:id' => 'photos#new', as: :photo
