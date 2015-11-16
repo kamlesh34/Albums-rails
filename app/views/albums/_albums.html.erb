@@ -5,7 +5,7 @@
 		<% if f.photos.present? %>
 		<td id="ex5"><%= link_to image_tag(f.photos.first.snaps_url(:medium)), user_album_path(@user.id,f.id)%> </td>
 		<%else%>
-			<td><%= link_to image_tag("water.jpeg"), user_album_path(@user.id,f.id) %>
+			<td><%= link_to image_tag("/assets/water.jpeg"), user_album_path(@user.id,f.id) %>
 			</td>
 		<%end%>
 			 <div class="caption">
