@@ -1,0 +1,39 @@
+<% if (@images.count)%4 != 0 %>
+<% pages= (@images.count/4)+1 %>
+<%else%>
+<% pages= (@images.count/4) %>
+<%end%>
+<center>
+<ul class="pagination">
+
+<% if @images.current_page == 1 %>
+<li class="disabled"><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=1"> First</a></li>
+<%else%>
+<li id="home-page" class="active"><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=1"> Home</a></li>
+<%end%>
+
+<% if @images.current_page - 1 > 0 %>
+<li><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=<%= @images.current_page - 1 %>"> Previous</a></li>
+<%else%>
+<li class="disabled"><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=<%= @images.current_page - 1 %>"> Previous</a></li>
+<%end%>
+
+<% for i in 1..pages do %>
+
+    <li><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=<%= i %>"> <%= i %></a></li>
+
+<%end%>
+<% if @images.current_page + 1 <= pages %>
+<li><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=<%= @images.current_page + 1 %>"> Next</a></li>
+<%else%>
+<li class="disabled"><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=<%= @images.current_page %>"> Next</a></li>
+<%end%>
+
+<% if @images.current_page == pages %>
+<li class="disabled"><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=<%= pages %>"> Last</a></li>
+<%else%>
+<li id="home-page" class="active"><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=<%= pages %>"> Last</a></li>
+<%end%>
+
+</ul>
+</center>

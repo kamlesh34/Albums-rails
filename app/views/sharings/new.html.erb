@@ -1,0 +1,13 @@
+<div class="container">
+<%= image_tag @photo.snaps_url(:medium), class: "col-md-6 thumbnail"%>
+<div class="col-md-6">
+<%=form_for :sharing, :url => user_album_photo_sharings_path, :method => :post do |f| %>
+<h3><%= f.label :description, class: "label label-warning" %>
+<div class= "input-group">
+<%= f.text_area :title, placeholder: "Enter Description Here...", :rows => 5, :cols => 100, class: "form-control" %>
+</div><br>
+<%= f.submit :submit, class: "btn btn-primary btn-lg"%>
+<%= link_to "Cancel", :back, class: "btn btn-warning btn-lg"%></h3>
+<%end%>
+</div>
+</div>

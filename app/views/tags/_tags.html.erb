@@ -1,0 +1,4 @@
+<% @tags.each do |f| %>
+<%= link_to tag_path(f.id), remote: true, class: "list-group-item list-group-item-warning" do%><i class="glyphicon glyphicon-tag"></i> <%= f.tname %><span class="badge"><%= f.photos.count %></span>
+<%end%>
+<%end%>

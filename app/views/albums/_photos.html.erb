@@ -1,0 +1,68 @@
+<% @images.each do|f| %>
+	<div class="col-xs-6 col-md-3">
+    <div class="thumbnail tilt" id="photo_back">
+    
+
+    <!---Sharing Feature Button-->
+<div class="share">
+<% if f.sharings.present? %>
+<% @sharings=f.sharings %>
+<% @sharings.each do |t| %>
+	<%=link_to user_album_photo_sharing_path(@user.id,@album.id, f.id, t.id), :method => :delete, class: "btn btn-warning" do %>
+                                                                    <i class="glyphicon glyphicon-ban-circle"></i> UnShare
+                                                                    <%end%>
+<%end%>
+<%else%>
+	<%=link_to new_user_album_photo_sharing_path(@user.id,@album.id, f.id), class: "btn btn-warning" do %>
+                                                                    <i class="glyphicon glyphicon-share"></i> Share
+                                                                    <%end%>
+<%end%>
+</div>
+
+
+<!---Sharing Feature Button End-->
+
+
+	<% if /missing.png/.match(f.snaps_url) %>
+	<%else%>
+	<%= link_to image_tag(f.snaps_url(:medium)), f.snaps_url%>
+	<% @tags=f.tags %>
+	<div class="caption">
+	
+	<h2>
+<% if f.title.length > 13 %>
+	<b id="txt"><%= f.title[0...10]+".." %></b>
+<%else%>
+	<b id="txt"><%= f.title %></b>
+<%end%>
+	</h2>
+	<span  id="txt">Tags: </span>
+	<% @tags.each do |t| %>
+		<span><%= link_to tags_path, class: "btn btn-info btn-xs" do %>
+                                                                    <i class="glyphicon glyphicon-tag"></i> <%= t.tname %>
+                                                                    <%end%></span> 
+		<%end%><br><br>
+
+
+
+
+
+
+
+
+<div class="btn-group btn-group-justified" role="group">
+<div class="btn-group" role="group">
+<%=link_to edit_user_album_photo_path(@user.id,@album.id, f.id), class: "btn btn-success" do %>
+                                                                    <i class="glyphicon glyphicon-pencil"></i> Edit
+                                                                    <%end%>
+</div>
+<div class="btn-group" role="group">
+<%= link_to user_album_photo_path(@user.id,@album.id,f.id), :method => "delete", data: { confirm: "Are You Sure?"}, class: "btn btn-danger" do %>
+                                                                    <i class="glyphicon glyphicon-trash"></i> Delete
+                                                                    <%end%>
+</div>
+</div>
+</div>
+</div>
+<%end%></div>
+	<%end%>

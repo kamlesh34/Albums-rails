@@ -1,0 +1,455 @@
+<div class="container">
+
+<!---Listing All Users With There Sharings-->
+<div class="col-md-3 list-group" id="sharing-users">
+
+<button class="list-group-item disabled"><h1><strong>Time-Line</strong></h1></button>
+	
+<% @sharings.map(&:user_id).uniq.each do |s| %>
+	
+		<% @sharings.each do |share| %>
+			<% if share.user_id == s%>
+			<button type="button" class="list-group-item" data-toggle="modal" data-target="#<%= s%>" >
+			
+			<span class="pull-left"><%= image_tag share.user.avatar_url, class: "user-thumb" %></span> <h5><strong><%= share.user.username %></strong> <span class="badge pull-right"><%= share.user.sharings.count %></span></h5>
+			
+			</button>
+
+
+
+<!-- Modal -->
+<div id=<%= s %> class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" data-dismiss="modal">&times;</button><br>
+        <h1 class="modal-title"><%= image_tag share.user.avatar_url, class: "user-thumb" %> <%= share.user.username %></h1>
+      </div>
+      <div class="modal-body">
+        <p>
+        <strong>
+        Joined on <%= share.user.created_at.to_date.to_formatted_s(:long_ordinal) %><br>
+        Total Photo's shared: <span class="badge"><%= share.user.sharings.count %></span><br>
+        Latest shared photo: "<%= share.title %>" <%= link_to "Show", sharing_path(share), class: "btn btn-default btn-xs", remote: true%></strong><br>
+        <small>
+        <span class="pull-right">On <%= share.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
+        </small>
+
+
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button> 
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+			<% break %>
+			<%end%><!--if end here-->
+	
+		<%end%><!--Sharing loop ends here-->
+
+
+
+
+
+
+
+<%end%>
+	
+
+</div>
+<!---Ending Users Sharings-->
+
+
+
+
+<!---Setting Up Sharings-->
+<div class="col-md-6" id="sharings">
+<% @sharings.each do |f| %>
+
+<% if f.photos.present? %>
+<h3>
+<div id="sharing_photo" class="sharing">
+
+	<div class="label label-info label-lg">
+	<%= f.user.username %>
+	</div>
+
+	<div class="label label-success pull-right">
+	<small id="txt"> on <%= f.created_at.to_date %></small>
+	</div>
+<small>
+<div class="likes caption pull-right" id="<%= f.id %>">
+<% @like_authors = [] %>
+<% if f.likes.present? %>
+
+<% @liked = false %>
+						<% f.likes.each do |l| %>
+							<% if l.author == current_user.username %>
+								<p class="like-<%= l.id %>">
+									<%= link_to '#', class: "add-like hidden button heart" do%>
+									<%end%>
+									<%= link_to '#', class: "remove-like button uheart" do%>
+									<%end%>
+								</p>
+								<% @liked = true %>
+								<% like_authors = "You" %>
+								<%else%>
+								<% like_authors = l.author %>
+							<%end%>
+						<%end%>
+						<% if (@liked == false) %>
+								
+							<p class="like-0">
+									
+										<%= link_to '#', class: "add-like button heart" do%>
+										<%end%>
+										<%= link_to '#', class: "remove-like hidden button uheart" do%>
+										<%end%>		
+							</p>
+						<%end%>
+						
+<%else%>
+<p class="like-0">
+<%= link_to '#', class: "add-like button heart" do%>
+<%end%>
+<%= link_to '#', class: "remove-like hidden button uheart" do%>
+<%end%></p>
+<%end%>
+</div>
+</small>
+	<% f.photos.each do |t| %>
+		<%= link_to image_tag(t.snaps_url(:medium)), '#'%>
+	<%end%><!---photo loop ended-->
+
+
+
+
+
+			<center>
+				<small>
+					<b>
+						<p class="sharing_description well"><i class="fa fa-quote-left"></i>    <%= f.title %>  <i class="fa fa-quote-right"></i>
+						</p>
+					</b>
+				</small>
+			</center>
+
+
+
+
+
+
+
+
+<div class="hidden well ncomment">
+	<%= form_for :comment, :url => sharing_comments_path(f), :method => :post do |c| %>
+		<div class="input-group">
+		  <span class="input-group-addon"><i class="fa fa-commenting fa-lg"></i></span>
+		  <input id="comment_comment" name="comment[comment]" class="form-control" type="text" placeholder="Enter Comment Here....">
+		</div>
+		<%= c.hidden_field :author, :value=> current_user.username %>
+
+<br>
+		<div class="btn-group" role="group">
+
+			<div class="btn-group" role="group">
+			<%= button_tag(type: "submit", class: "btn btn-success btn-md") do %>
+			    <i class="fa fa-external-link fa-lg"></i> Post 				<% end %>
+			</div>
+			<div class="btn-group">
+			<a href="#" class="btn btn-warning btn-md closing">
+			<i class="fa fa-trash fa-lg"></i> Discard</a>
+			</div>
+
+		</div>
+	<%end%><!---form for comment ended-->
+</div>
+
+
+<div id="comment-modal" class="modal fade left" id="comment-modal"></div>
+<div class="cbuttons">
+	<%= link_to '#', class: "btn btn-default pull-right comment" do%>
+	<i class="fa fa-commenting-o"> Comment</i>					<%end%>
+
+
+	<%= link_to sharing_path(f), remote: true, class: "btn btn-default comments" do%>
+	<i class="fa fa-comments-o"> Comments</i>							<%end%>
+</div>
+
+</div>
+</h3>
+<%end%><!---if photos ended-->
+<%end%><!---sharing loop ended-->
+</div>
+<!---Ending Sharings-->
+
+
+<!--Recent Activities Here-->
+<div class="col-md-3 well">
+<!--Recent Sharings-->
+<h2>Activity Board</h2>
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#recent">Recent</a></li>
+    <li><a data-toggle="tab" href="#older">Older</a></li>
+    
+  </ul>
+
+
+<div class="tab-content" id="activity-tab">
+    <div id="recent" class="tab-pane fade in active">
+<% @sharings.each do |f| %>
+
+	<% if Date.today - f.created_at.to_date <= 7 %>
+	<div class="list-group-item">
+			<small>
+				<% if Date.today - f.created_at.to_date == 0 %>
+					Today
+				<%else%>
+							<% if Date.today - f.created_at.to_date == 1 %>
+							Yesterday
+							<%else%>
+							<%= f.created_at.to_date.to_formatted_s(:long_ordinal) %>
+							<%end%>
+				<%end%>
+
+			</small>
+			<br>
+			<%= f.user.username %> Shared <span>
+			<% f.photos.each do |t| %>
+				<%= link_to image_tag(t.snaps_url), sharing_path(f), class: "img-circle", remote: true%>
+				<%end%><!---photo loop ended--></span>		
+		
+	</div>
+	<% end %>
+
+<%end%>
+</div>
+
+<div id="older" class="tab-pane fade">
+<% @sharings.each do |f| %>
+
+<small>
+	<%= f.created_at.to_date.to_formatted_s(:long_ordinal) %>
+</small>
+<br>
+		
+		<% f.photos.each do |t| %>
+			<%= link_to image_tag(t.snaps_url), sharing_path(f), class: "img-circle", remote: true %>
+		<%end%> Shared By 
+		<%= f.user.username %>
+<div class="divider"></div>
+<%end%>
+</div>
+</div>
+<br>
+
+<!--Recent Comments Here-->
+<div>
+<div class="panel-group" id="accordion">
+	<div class="panel panel-default">
+	      <div class="panel-heading">
+	        <h4 class="panel-title">
+	          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="btn btn-block"><strong>U missed them!!</strong></a>
+	        </h4>
+	      </div>
+	      <div id="collapse1" class="panel-collapse collapse in">
+			<div class="panel-body" id="recent-comments">
+
+		<% @comments.each do |c| %>
+			<% if c.created_at.to_date - current_user.last_sign_in_at.to_date >= 0 && current_user.username != c.author %>
+			<small>
+				<% if c.author == c.sharing.user.username %>
+			
+			<small>
+			<span class="pull-left"><%= c.created_at.to_formatted_s(:long_ordinal) %></span></small><br>
+			<%= c.author %> Commented on its Shared Photo
+			<%= link_to sharing_path(c.sharing.id), remote: true do%>
+	<i class="glyphicon glyphicon-chevron-right"></i><%end%>
+			<div class="divider"></div>
+				<%else%>
+			
+			<small>
+			<span class="pull-left"><%= c.created_at.to_formatted_s(:long_ordinal) %></span></small><br>
+			<%= c.author %> Commented on <%= c.sharing.user.username %>'s Photo
+			<%= link_to sharing_path(c.sharing.id), remote: true do%>
+			<i class="glyphicon glyphicon-chevron-right"></i><%end%>
+			<div class="divider"></div>
+				<%end%>
+			</small>
+			<%end%>
+		<%end%>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	        <h4 class="panel-title">
+	          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="btn btn-block"><strong>Hey Someone Commented!!</strong></a>
+	        </h4>
+	    </div>
+	    <div id="collapse2" class="panel-collapse collapse">
+			<div class="panel-body" id="recent-comments">
+
+<% @comments.each do |c| %>
+			<% if c.created_at.to_date - current_user.last_sign_in_at.to_date >= 0 && current_user.username != c.author %>
+			
+				<% if current_user.username == c.sharing.user.username %>
+			<small>
+			<small>
+			<span class="pull-left"><%= c.created_at.to_formatted_s(:long_ordinal) %></span></small><br>
+			<%= c.author %> Commented on Your Photo
+			<%= link_to sharing_path(c.sharing.id), remote: true do%>
+			<i class="fa fa-reply-all fa-lg"></i><%end%>
+			<div class="divider"></div>
+			</small>
+				<%end%>
+			<%end%>
+<%end%>
+<% @sharings.each do |share| %>
+	<% if share.user.username == current_user.username %>
+		<% share.likes.each do |lik| %>
+			<% if lik.created_at.to_date - current_user.last_sign_in_at.to_date >= -5 && current_user.username != lik.author %>
+			<small>
+			<%= lik.created_at.to_date.to_formatted_s(:long_ordinal) %></small><br>
+			<strong>
+			<%= lik.author %> Liked your Photo</strong>
+			<%= link_to sharing_path(share.id), remote: true do%>
+			<i class="fa fa-reply-all fa-lg"></i><%end%>
+			<div class="divider"></div>
+			<%end%>
+		<%end%>
+	<%end%>
+<%end%>
+			</div>
+		</div>
+	</div>		
+
+</div><!--Ending of Panel Group-->
+</div>
+
+</div>
+</div>
+
+
+
+
+<!--Scripts Here-->
+<script>
+
+  $('.comment').click(function(){
+
+
+    $(this).parents(".sharing").find('div.ncomment').removeClass('hidden');
+    $(this).closest('div.cbuttons').addClass('hidden');
+    });
+$('.closing').click(function(){
+
+$(this).closest('div.ncomment').addClass('hidden');
+
+    $(this).parents(".sharing").find('div.cbuttons').removeClass('hidden');
+
+
+  });
+
+
+$(function() {
+    if (!$.trim($("#collapse1").find('.panel-body').html())){
+                $("#collapse1").find('.panel-body').html("You know it all!");
+            }
+
+
+    if (!$.trim($("#recent").find('.list-group-item').html())){
+    	alert("inside recent");
+                $("#recent").html('Nothing New to share!');
+            }
+});
+
+
+
+$("#collapse2").on("show.bs.collapse", function(){
+
+var $inner = $(this).find('.panel-body');
+if (!$.trim($inner.html())) {
+
+                $inner.html("No Recent Views on your photo's");
+            }
+	});
+$("#collapse1").on("show.bs.collapse", function(){
+
+var $inner = $(this).find('.panel-body');
+if (!$.trim($inner.html())) {
+
+                $inner.html("You know it all!");
+            }
+	});
+
+
+$(document).on('click','.add-like',function(e){
+	e.preventDefault();
+	
+	var id=$(this).closest('div').attr('id');
+	
+	$.ajax({
+                 url: "/sharings/"+id+"/likes/", // Route to the Script Controller method
+                type: "POST",
+           
+                 // This goes to Controller in params hash, i.e. params[:file_name]
+             success: function(result) {
+		debugger
+             	$("#"+this.url.split("/")[2]).find('.add-like').addClass('hidden')
+             	$("#"+this.url.split("/")[2]).find('.remove-like').removeClass('hidden')
+             	id=$("#"+this.url.split("/")[2]).find('p').attr('class').split('-')[1]
+             	$("#"+this.url.split("/")[2]).find('p').removeClass('like-'+id)
+             	$("#"+this.url.split("/")[2]).find('p').addClass('like-'+result.like_number)
+
+                        
+                      },
+               error: function() {
+   
+                        alert("Something Happened!")
+                      }
+	});
+});
+
+$(".remove-like").click(function(e){
+	e.preventDefault();
+	var sid=$(this).closest('div').attr('id');
+	var id=$(this).closest('p').attr('class');
+	id=id.split('-')[1];
+
+	$.ajax({
+                 url: "/sharings/"+sid+"/likes/"+id, // Route to the Script Controller method
+                type: "DELETE",
+            
+                 // This goes to Controller in params hash, i.e. params[:file_name]
+             success: function(result) {
+ debugger
+             	$("#"+this.url.split("/")[2]).find('.remove-like').addClass('hidden')
+             	$("#"+this.url.split("/")[2]).find('.add-like').removeClass('hidden')
+                       
+                      },
+               error: function() {
+          
+                        alert("Something Happened!")
+                      }
+	});
+});
+
+
+
+
+
+
+
+</script>

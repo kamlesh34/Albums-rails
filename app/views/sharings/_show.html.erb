@@ -1,0 +1,137 @@
+<div class="modal-dialog" id="modalwindow">
+<div class="modal-content">
+<div class="modal-header">
+        <button type="button" class="close" 
+                data-dismiss="modal" 
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title"><%= @sharing.user.username %> Shared:</h3>
+        
+      </div>
+
+<div class="modal-body">
+<span><% @sharing.photos.each do |t| %>
+		<%= link_to image_tag(t.snaps_url(:small)), '#'%>
+	<%end%></span>
+
+	<p class="well">
+	<small>Liked By: 
+	<% @likes.each do |l| %>
+	<% if l.author == current_user.username %>
+	<span class="label label-danger">You</span> 
+	<%else%>
+	<span class="label label-danger"><%= l.author %></span> 
+	<%end%>
+	<%end%>
+	</small>
+	</p>
+
+
+<% if @comments.present? %>
+
+
+	<small>
+
+<% @comments.each do |f| %>
+	<% if f.author == current_user.username %>
+<p class="text-warning">
+<div class="divider"></div>
+<span class="pull-right"><%= f.comment %></span> <br>
+<small>
+<span class="pull-right"><%= f.created_at.to_formatted_s(:long_ordinal) %></span>
+</small><br>
+</p>
+
+	<%else%>
+	<div class="divider"></div>
+<p class="text-success">
+<small>
+<span class="pull-left"><%= f.created_at.to_formatted_s(:long_ordinal) %></span></small><br>
+<%= f.author %>: <%= f.comment %><br>
+</p>
+
+	<%end%>
+<%end%>
+
+	</small>
+
+
+<%else%>
+<h3 class="text-danger">No Comments</h3>
+<% end %>
+
+
+
+
+
+</div>
+
+
+<!--Footer-->
+<div class="modal-footer">
+
+
+<div class="hidden ncomment1">
+<%= form_for :comment, :url => sharing_comments_path(@sharing), :method => :post do |c| %>
+		<div class="input-group">
+		  <span class="input-group-addon"><i class="fa fa-commenting fa-lg"></i></span>
+		  <input id="comment_comment" name="comment[comment]" class="form-control" type="text" placeholder="Enter Comment Here....">
+		</div>
+		<%= c.hidden_field :author, :value=> current_user.username %>
+
+<br>
+		<div class="btn-group" role="group">
+
+			<div class="btn-group" role="group">
+			<%= button_tag(type: "submit", class: "btn btn-default btn-md") do %>
+			    <i class="fa fa-external-link fa-lg"></i> Post 				<% end %>
+			</div>
+			<div class="btn-group">
+			<a href="#" class="btn btn-default btn-md closing1">
+			<i class="fa fa-trash fa-lg"></i> Discard</a>
+			</div>
+
+		</div>
+
+	<%end%><!---form for comment ended-->
+	</div>
+
+	<div class="cbuttons1 btn-group pull-right">
+
+		<div class="btn-group" role="group">
+		<%= link_to '#', class: "btn btn-default comment1" do%>
+		<i class="fa fa-commenting-o"> Comment</i>					<%end%>
+
+		<button class="btn btn-default" data-dismiss="modal">Cancel</button>
+		</div>
+
+	</div>
+
+</div><!--Fotter Ends-->
+</div>
+
+</div>
+</div>
+
+
+
+<script>
+	$(document).ready(function(){
+
+  $('.comment1').click(function(){
+
+
+    $(this).parents(".sharing").find('div.ncomment1').removeClass('hidden');
+    $(this).closest('div.cbuttons1').addClass('hidden');
+    });
+$('.closing1').click(function(){
+
+$(this).closest('div.ncomment1').addClass('hidden');
+
+    $(this).parents(".sharing").find('div.cbuttons1').removeClass('hidden');
+
+
+  });
+
+});
+</script>
