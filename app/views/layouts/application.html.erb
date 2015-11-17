@@ -8,6 +8,7 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans+Condensed:300|Oxygen|Maven+Pro|Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Roboto|Oswald|Quicksand:700|Quattrocento+Sans|Ruda|Allerta+Stencil|Monoton|Iceland|Sarpanch' rel='stylesheet' type='text/css'>
 
+<link href='https://fonts.googleapis.com/css?family=Poiret+One|Indie+Flower|Inconsolata|Architects+Daughter' rel='stylesheet' type='text/css'>
 
 <link href='https://fonts.googleapis.com/css?family=Indie+Flower|Shadows+Into+Light|Dancing+Script' rel='stylesheet' type='text/css'>
 
@@ -34,7 +35,7 @@
 <% if params[:action]=="index" %>
             <% if params[:controller]=="albums"%>
                         <li class="active"><%= link_to user_albums_path(current_user.id) do%>
-                        <span>HOME</span> <i class="glyphicon glyphicon-home"></i>
+                        <strong>HOME</strong> <i class="glyphicon glyphicon-home"></i>
                         <%end%>
                         </li>
                         <li id="btn-back"><%= link_to tags_path, id: "txt" do%>
@@ -42,7 +43,7 @@
                         <%end%>
                         </li>
                         <li id="btn-back"><%= link_to sharings_path, id: "txt" do%>
-                        <span>SHARES</span> <i class="fa fa-bullhorn fa-lg"></i>
+                        <span>BROADCASTS</span> <i class="fa fa-bullhorn fa-lg"></i>
                         <%end%>
                         </li>
             <%else%>
@@ -52,11 +53,11 @@
                         <%end%>
                         </li>
                         <li class="active"><%= link_to tags_path, id: "txt" do%>
-                        <span>TAGS</span> <i class="glyphicon glyphicon-tags"></i>
+                        <strong>TAGS</strong> <i class="glyphicon glyphicon-tags"></i>
                         <%end%>
                         </li>  
                         <li id="btn-back"><%= link_to sharings_path, id: "txt" do%>
-                        <span>SHARES</span> <i class="fa fa-bullhorn fa-lg"></i>
+                        <span>BROADCASTS</span> <i class="fa fa-bullhorn fa-lg"></i>
                         <%end%>
                         </li>
                 <%else%>
@@ -69,7 +70,7 @@
                         <%end%>
                         </li>
                         <li class="active"><%= link_to sharings_path, id: "txt" do%>
-                        <span>SHARES</span> <i class="fa fa-bullhorn fa-lg"></i>
+                        <strong>BROADCASTS</strong> <i class="fa fa-bullhorn fa-lg"></i>
                         <%end%>
                         </li>
                 <%end%>
@@ -84,7 +85,7 @@
     <%end%>
     </li>
     <li id="btn-back"><%= link_to sharings_path, id: "txt" do%>
-    <span>SHARES</span> <i class="fa fa-bullhorn fa-lg"></i>
+    <span>BROADCASTS</span> <i class="fa fa-bullhorn fa-lg"></i>
     <%end%>
     </li>
 <%end%>
@@ -116,11 +117,21 @@
           </li>
 
           <li role="separator" class="divider"></li>
-          <li><a href="#"><i class="fa fa-info-circle fa-lg"> A</i>
+          <li><a data-toggle="modal" href="#ABOUT"><i class="fa fa-info-circle fa-lg"> A</i>
 bout</a></li>
           </ul>
     </li>
 </ul>
+
+
+
+
+
+
+
+
+
+
 
                 </div>
  <% else %>
@@ -152,6 +163,40 @@ bout</a></li>
 
 </head>
  
+<!-- Modal -->
+<div id="ABOUT" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        
+      </div>
+      <div class="modal-body">
+        <p class="well">
+        
+        <strong>KALBUM</strong> is an Album gallery application. Backed with cloud thanks to the cloudinary an freely available cloud-storage for safe storage of the Images and provides authentication through Devise one of the widly used gem for authentication purposes in ruby. Apart from being just a private album gallery it allows you to share your memorable moments with others in the KALBUM.<br>
+        So feel free to Upload, Download, Watch, Share, Comment and Like all that u want with KALBUM, speak your mind or share a photo. Open in a Mobile Or a Tablet Or maybe not try a PC choose what ever you want.
+
+        </p>
+        <p>
+        <h3> For More On This</h3>
+        <%=link_to image_tag("cloudinary.png"), 'http://cloudinary.com/', title: 'Cloudinary', rel: 'tooltip' , class: "logo" %>&nbsp
+        <%=link_to image_tag("bootstrap.png"), 'http://getbootstrap.com/', title: 'Bootstrap', rel: 'tooltip' , class: "logo" %>&nbsp
+        <%=link_to image_tag("js.png"), 'http://w3schools.com/js/', title: 'JavaScript', rel: 'tooltip' , class: "logo" %>&nbsp
+        <%=link_to image_tag("jquery.png"), 'http://jquery.com/', title: 'Jquery', rel: 'tooltip' , class: "logo" %>&nbsp
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button> 
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 <body>
 
 <%= yield %>

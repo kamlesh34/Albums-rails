@@ -14,7 +14,7 @@
   <li class="active"><%= @album.name %></li>
 </ol>
 
-
+<% if @images.present? %>
 <div class="row line" id="photo-listings">
 <!--Photo Listings-->
 <%= render "photos" %>
@@ -30,6 +30,16 @@
 <%else%>
 <div id="pages-listing">
 <%= render "pages" %>
+</div>
+<%end%>
+
+<%else%>
+<div class="row no-line">
+<center>
+<h1> <%= link_to new_user_album_photo_path(@user.id,@album.id),  class: "btn btn-warning btn-lg" do %>
+					    <i class="glyphicon glyphicon-plus"></i> Photo
+					    <%end%> </h1>
+					    </center>
 </div>
 <%end%>
 

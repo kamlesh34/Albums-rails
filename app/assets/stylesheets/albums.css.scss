@@ -2,9 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#alerts{
-	position: absolute;
-	z-index: 4;
+.logo img{
+transition: 1s ease;
+	height: 30px;
+	width: 30px;
+}
+.logo img:hover{
+	height: 32px;
+	width: 32px;
+}
+#ABOUT .modal-dialog .modal-header {
+height: 10em;
+background-image: url("ruby_banner.jpg");
+	background-size: 100% 100%;
+}
+#ABOUT .modal-dialog .modal-body {
+font-size: 1.4em;
+font-family: 'Poiret One', cursive;
 }
 .preview{
 	height: 200px;
@@ -247,7 +261,9 @@ box-shadow: 0 3px 8px rgb(255,255,255);
 
 }
 
+
 body{
+min-height: 100%;
 padding-top: 60px;
 	background: image-url("light.jpg");
 	background-size: 100% 100%;
@@ -326,6 +342,17 @@ scroll-snap-points-y: repeat(430px);
 background-color: rgba(0,0,0,0.5);
   text-shadow: 2px 2px 4px #000000;
 }
+.no-line{
+
+border: 1px solid #ccc;
+border-radius: 10px;
+padding-top: 40px;
+margin-bottom: 20px;
+height: 180px;
+
+background-color: rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px #000000;
+}
 
 .no-pic-line{
 
@@ -355,7 +382,7 @@ text-transform: capitalize;
 }
 
 
-/* this is for new photo */
+												/* this is for new photo */
 
 
 .forms_right{
@@ -372,7 +399,7 @@ background-color: rgba(0,0,0,0.5);
 
 }
 
-/* for tags */
+													/* for tags */
 
 .circle{
 	-webkit-border-radius: 64px;
@@ -551,7 +578,7 @@ box-shadow: 5px 5px 20px #999;
 
 
 
-//for sharings
+															//for sharings
 .likes{
 	position: absolute;
 	z-index: 3;
@@ -616,19 +643,26 @@ box-shadow: 5px 5px 20px #999;
 #activity-tab{
 	height: 200px;
 	overflow-y: auto;
+	font-family: 'Inconsolata', ;
 }
 #recent-comments{
 	height: 120px;
 	overflow-y: auto;
+	font-family: 'Inconsolata', ;
 }
 
 #sharing-users{
+font-family: 'Inconsolata', ;
 	margin-top: 5em;
 	max-height: 46em;
 }
-#sharing-users button{
-	width: 100%;
+.user-about{
+font-family: 'Poiret One', cursive;
+
 }
+
+
+
 
 
 
@@ -644,6 +678,9 @@ width:100%;
 margin-left: 0px;
 overflow-y: initial;
 }
+#comment-modal .modal-dialog .modal-body {
+font-family: 'Inconsolata', ;
+}
 }
 
 .modal.fade:not(.in).left .modal-dialog {
@@ -652,7 +689,7 @@ overflow-y: initial;
 }
 
 #comment-modal .modal-dialog .modal-body{
-  height: 20em;
+  height: 18em;
   overflow-y: auto;
 }
 
@@ -683,6 +720,10 @@ overflow-y: initial;
 	width: 40px;
 	border-radius: 100%;
 
+}
+
+.sharing_description{
+	font-family: 'Architects Daughter', cursive;
 }
 #sharings{
 height: 46em;

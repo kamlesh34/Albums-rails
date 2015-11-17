@@ -3,36 +3,42 @@
 <!---Listing All Users With There Sharings-->
 <div class="col-md-3 list-group" id="sharing-users">
 
-<button class="list-group-item disabled"><h1><strong>Time-Line</strong></h1></button>
+<a class="list-group-item disabled"><h4><strong>Time-Line</strong></h4></a>
 	
 <% @sharings.map(&:user_id).uniq.each do |s| %>
 	
 		<% @sharings.each do |share| %>
 			<% if share.user_id == s%>
-			<button type="button" class="list-group-item" data-toggle="modal" data-target="#<%= s%>" >
+
+			<a class="list-group-item list-group-item-success" data-toggle="modal" href="#<%= s%>" >
+
+			<span class="pull-left"><%= image_tag share.user.avatar_url, class: "user-thumb" %></span><h4 class="text-capitalize"><center><strong><%= share.user.username %></strong> <span class="badge pull-right"><%= share.user.sharings.count %></span><br>
+			<small><small><%= share.created_at.to_date.to_formatted_s(:long_ordinal) %></small></small>
+			</center>
 			
-			<span class="pull-left"><%= image_tag share.user.avatar_url, class: "user-thumb" %></span> <h5><strong><%= share.user.username %></strong> <span class="badge pull-right"><%= share.user.sharings.count %></span></h5>
 			
-			</button>
+			</h4>
+			
+			</a>
 
 
 
 <!-- Modal -->
-<div id=<%= s %> class="modal fade" role="dialog">
+<div id=<%= s %> class="modal fade user-about" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close pull-right" data-dismiss="modal">&times;</button><br>
-        <h1 class="modal-title"><%= image_tag share.user.avatar_url, class: "user-thumb" %> <%= share.user.username %></h1>
+        <h1 class="modal-title"><%= image_tag share.user.avatar_url, class: "user-thumb" %> <%= share.user.username %>  <span class="label label-primary"><%= share.user.sharings.count %></span></h1>
       </div>
       <div class="modal-body">
         <p>
-        <strong>
+        
         Joined on <%= share.user.created_at.to_date.to_formatted_s(:long_ordinal) %><br>
-        Total Photo's shared: <span class="badge"><%= share.user.sharings.count %></span><br>
-        Latest shared photo: "<%= share.title %>" <%= link_to "Show", sharing_path(share), class: "btn btn-default btn-xs", remote: true%></strong><br>
+        Total Photo's shared: <strong><span class="badge"><%= share.user.sharings.count %></span></strong><br>
+        Latest shared photo: "<%= share.title %>" <%= link_to "Show", sharing_path(share), class: "btn btn-default btn-xs", "data-dismiss" => "modal", remote: true%><br>
         <small>
         <span class="pull-right">On <%= share.created_at.to_date.to_formatted_s(:long_ordinal) %></span>
         </small>
@@ -128,7 +134,7 @@
 </div>
 </small>
 	<% f.photos.each do |t| %>
-		<%= link_to image_tag(t.snaps_url(:medium)), '#'%>
+		<%= link_to image_tag(t.snaps_url(:medium)), t.snaps_url %>
 	<%end%><!---photo loop ended-->
 
 
@@ -370,7 +376,7 @@ $(function() {
 
 
     if (!$.trim($("#recent").find('.list-group-item').html())){
-    	alert("inside recent");
+  
                 $("#recent").html('Nothing New to share!');
             }
 });
