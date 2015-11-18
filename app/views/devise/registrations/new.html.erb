@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container-fluid">
 <% if resource.errors.present? %>
   <div class="alert alert-danger pull-right" id="alerts">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <%= devise_error_messages! %></div>
   <%end%>
-<div class="col-md-4 pull-right">
+<div class="col-md-5 col-sm-5 pull-right">
 <h2 id="txt">Sign up</h2>
 <div class="well">
 <%- if devise_mapping.omniauthable? %>
@@ -85,4 +85,83 @@
 
 </div>
 </div>
+
+
+
+
+<div class="col-md-7 visible-md visible-lg"><br><br><br></div>
+
+<div class="col-md-7 visible-md visible-lg" id="demos">
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+      <div class="item active">
+        <%=link_to image_tag("moment.jpg"), '#', class: "frame" %>
+        <div class="carousel-caption">
+          <h3><%= image_tag "camera.png", class: "medium" %></h3>
+          <br><br><br><br>
+          <p>Capture precious memories all that u want and access anywhere anytime with <strong>KALBUM</strong>.</p>
+        </div>
+      </div>
+
+      <div class="item">
+      <%=link_to image_tag("wood2.jpg"), '#', class: "frame" %>
+        <div class="carousel-caption">
+          <h3><%= image_tag "cloudinary2.png", class: "medium" %></h3>
+          <p><strong>KALBUM</strong> is integrated with cloud service to provide unintrupted service.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <%=link_to image_tag("responsive.jpg"), '#', class: "frame" %>
+        <div class="carousel-caption">
+          <h1>With Bootstrap.</h1>
+<br><br>
+          
+          
+        </div>
+      </div>
+    
+      <div class="item">
+        <%=link_to image_tag("all.jpg"), '#', class: "frame" %>
+        <div class="carousel-caption">
+          <h3><%= image_tag "like.png", class: "medium" %></h3>
+          <p>Why to feel alone When U got a party behind. Now share your moments with others in <strong>KALBUM</strong>.</p>
+        </div>
+      </div>
+  
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+</div>
+<!--for filling up-->
+<div class="col-md-12"><br><br></div>
 </div>

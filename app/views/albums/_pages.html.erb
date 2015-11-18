@@ -9,7 +9,7 @@
 <% if @images.current_page == 1 %>
 <li class="disabled"><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=1"> First</a></li>
 <%else%>
-<li id="home-page" class="active"><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=1"> Home</a></li>
+<li id="home-page" class="active"><a href="/users/<%= current_user.id %>/albums/<%= @album.id %>?page=1"> First</a></li>
 <%end%>
 
 <% if @images.current_page - 1 > 0 %>
