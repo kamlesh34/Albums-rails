@@ -3,7 +3,7 @@ class SharingsController < ApplicationController
 def index
 	@sharings=Sharing.all.order('created_at DESC')
 	@user=User.all
-	@comments=Comment.all
+	@comments=Comment.all.order('created_at DESC')
 	respond_to do |format|
     format.html #for my controller, i wanted it to be JS only
     format.js
