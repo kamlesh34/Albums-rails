@@ -47,6 +47,7 @@
                         <span>BROADCASTS</span> <i class="fa fa-bullhorn fa-lg"></i>
                         <%end%>
                         </li>
+                        <li id="btn-back"><a data-toggle="modal" href="#HELP" id="txt">Help <i class="fa fa-question fa-lg"></i></a></li>
             <%else%>
                 <% if params[:controller]=="tags"%>
                         <li id="btn-back"><%= link_to user_albums_path(current_user.id), id: "txt" do%>
@@ -61,6 +62,7 @@
                         <span>BROADCASTS</span> <i class="fa fa-bullhorn fa-lg"></i>
                         <%end%>
                         </li>
+                        <li id="btn-back"><a data-toggle="modal" href="#HELP" id="txt">Help <i class="fa fa-question fa-lg"></i></a></li>
                 <%else%>
                         <li id="btn-back"><%= link_to user_albums_path(current_user.id), id: "txt" do%>
                         <span>HOME</span> <i class="glyphicon glyphicon-home"></i>
@@ -74,6 +76,7 @@
                         <strong>BROADCASTS</strong> <i class="fa fa-bullhorn fa-lg"></i>
                         <%end%>
                         </li>
+                        <li id="btn-back"><a data-toggle="modal" href="#HELP" id="txt">Help <i class="fa fa-question fa-lg"></i></a></li>
                 <%end%>
             <%end%>
 <%else%>
@@ -89,6 +92,7 @@
     <span>BROADCASTS</span> <i class="fa fa-bullhorn fa-lg"></i>
     <%end%>
     </li>
+    <li id="btn-back"><a data-toggle="modal" href="#HELP" id="txt">Help <i class="fa fa-question fa-lg"></i></a></li>
 <%end%>
                 </ul>
                       
@@ -163,8 +167,80 @@ bout</a></li>
 </nav>
 
 </head>
+
+
+<!-- HELP Modal -->
+<div id="HELP" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header alert alert-warning">
+      <h2>
+      <%=link_to image_tag("chrome.png"), 'https://www.google.com/chrome/', title: 'Google Chrome', rel: 'tooltip' , class: "medium-logo" %>
+        Best viewed in Chrome.
+        </h2>
+      </div>
+      <div class="modal-body">
+        <p class="well">
+        
+        <strong>KALBUM HELP?</strong>
+        <ul>
+        <li>Viewing issue</li>
+        <p> <small>Experiencing any view related problem like "album seems large and all" kindly shift to chrome.</small></p>
+        <li>Downloading</li>
+        <p> <small>To Download a photo just click on the photo to open in full resolution, then right click and select "save as"</small></p>
+        <li>Share</li>
+        <p> <small>To share the photo kindly take the mouse to the upper left of the photo-card and the sharing button will be visible.</small></p>
+        </ul>
+
+        </p>
+        
+        <h3> For More On This</h3>
+        <div class="col-md-6">
+        <%=link_to image_tag("cloudinary.png"), 'http://cloudinary.com/', title: 'Cloudinary', rel: 'tooltip' , class: "logo" %>&nbsp
+        <%=link_to image_tag("bootstrap.png"), 'http://getbootstrap.com/', title: 'Bootstrap', rel: 'tooltip' , class: "logo" %>&nbsp
+        <%=link_to image_tag("js.png"), 'http://w3schools.com/js/', title: 'JavaScript', rel: 'tooltip' , class: "logo" %>&nbsp
+        <%=link_to image_tag("jquery.png"), 'http://jquery.com/', title: 'Jquery', rel: 'tooltip' , class: "logo" %>&nbsp
+        </div>
+        <!--fillings-->
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <!--filling-->
+       
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button> 
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
-<!-- Modal -->
+<!-- About Modal -->
 <div id="ABOUT" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
